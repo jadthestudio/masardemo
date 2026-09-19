@@ -49,19 +49,29 @@ body.lang-ar .lang-switch span:last-child{color:#8a97bc}
 /* Full RTL layout when Arabic is active */
 body.lang-ar{direction:rtl}
 
-/* Search overlay */
-.search-overlay{position:fixed;inset:0;background:rgba(8,15,36,.6);backdrop-filter:blur(3px);z-index:100;display:none;align-items:flex-start;justify-content:center;padding-top:12vh}
-.search-overlay.open{display:flex}
-.search-box{background:#fff;border-radius:16px;width:min(560px,90vw);padding:20px;box-shadow:0 30px 70px rgba(0,0,0,.35)}
-.search-box input{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:14px 16px;font:inherit;font-size:16px;outline:none}
+/* Search — compact dropdown anchored under the search icon, blurred backdrop */
+.search-overlay{position:fixed;inset:0;background:rgba(8,15,36,.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:100;
+  opacity:0;pointer-events:none;transition:opacity .2s ease}
+.search-overlay.open{opacity:1;pointer-events:auto}
+.search-box{position:absolute;top:96px;right:max(4%,calc((100% - 1200px)/2));width:min(380px,90vw);background:#fff;
+  border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.25);padding:16px;display:flex;flex-direction:column;
+  opacity:0;transform:translateY(-10px) scale(.98);transition:opacity .2s ease,transform .2s ease}
+.search-overlay.open .search-box{opacity:1;transform:translateY(0) scale(1)}
+body.lang-ar .search-box{right:auto;left:max(4%,calc((100% - 1200px)/2))}
+.search-box-head{display:flex;align-items:center;gap:10px}
+.search-box input{flex:1;width:100%;border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;font-size:15px;outline:none}
 .search-box input:focus{border-color:var(--blue)}
-.search-results{margin-top:12px;max-height:50vh;overflow:auto}
-.search-results a{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-radius:10px;color:var(--ink);font-weight:700;font-size:14px}
+.search-results{margin-top:10px;max-height:60vh;overflow:auto}
+.search-results a{display:flex;justify-content:space-between;align-items:center;padding:12px 13px;border-radius:10px;color:var(--ink);font-weight:700;font-size:14px}
 .search-results a:hover,.search-results a.hl{background:var(--bg)}
 .search-results a small{color:var(--muted);font-weight:600}
 .search-empty{color:var(--muted);font-size:13.5px;padding:10px 4px}
-.search-close{float:right;cursor:pointer;color:var(--muted);font-size:20px;line-height:1;border:0;background:none}
+.search-close{cursor:pointer;color:var(--muted);font-size:20px;line-height:1;border:0;background:none;
+  width:36px;height:36px;border-radius:50%;display:grid;place-items:center;flex:none}
+.search-close:hover{background:var(--bg)}
 .icon-btn{cursor:pointer}
+@media(max-width:560px){.search-box{top:70px;right:3%;left:3%;width:auto}
+  body.lang-ar .search-box{left:3%;right:3%}}
 
 /* Nav */
 .nav{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
@@ -257,6 +267,7 @@ section{padding:76px 0}
 .masar-chat-toggle{position:fixed;left:26px;bottom:26px;width:54px;height:54px;border-radius:50%;background:var(--red);border:0;color:#fff;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.25);z-index:40;cursor:pointer}
 .masar-chat-toggle svg{width:26px;height:26px}
 .masar-chat-panel{position:fixed;left:26px;bottom:92px;width:min(360px,88vw);max-height:min(520px,70vh);background:#fff;border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.3);z-index:41;display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--line)}
+.masar-chat-panel[hidden]{display:none}
 .masar-chat-head{background:var(--navy);color:#fff;padding:14px 44px 14px 16px;display:flex;align-items:center;position:relative;font-weight:800;font-size:14.5px;direction:ltr;text-align:left}
 .masar-chat-head-id{display:flex;align-items:center;gap:9px}
 .masar-chat-logo{width:26px;height:26px;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;flex:none}
@@ -307,6 +318,8 @@ body.lang-ar .masar-chat-msg-assistant{align-self:flex-end;border-bottom-left-ra
 @media(max-width:560px){
   section{padding:60px 0}
   .quick-grid,.cards,.pcards,.why-grid,.proj-grid,.footer-grid,.form-grid{grid-template-columns:1fr!important}
+  .statsbar .container{grid-template-columns:1fr 1fr!important}
+  .hp-icons{grid-template-columns:repeat(2,1fr)!important}
   .nav-inner{height:70px}
   .topbar-left a span{display:none}
   .nav-cta{display:none}
@@ -348,8 +361,10 @@ body.lang-ar .masar-chat-msg-assistant{align-self:flex-end;border-bottom-left-ra
 
 <div class="search-overlay" id="searchOverlay">
   <div class="search-box">
-    <button class="search-close" id="searchClose" aria-label="Close">&times;</button>
-    <input type="text" id="searchInput" placeholder="Search the site… ابحث في الموقع" autocomplete="off">
+    <div class="search-box-head">
+      <input type="text" id="searchInput" placeholder="Search the site… ابحث في الموقع" autocomplete="off">
+      <button class="search-close" id="searchClose" aria-label="Close">&times;</button>
+    </div>
     <div class="search-results" id="searchResults"></div>
   </div>
 </div>
@@ -531,24 +546,24 @@ body.lang-ar .masar-chat-msg-assistant{align-self:flex-end;border-bottom-left-ra
   <div class="geo dot-grid" style="width:180px;height:180px;left:4%;top:10%;color:#fff"></div>
   <div class="container" style="position:relative;z-index:1">
   <div class="section-head" style="align-items:start">
-    <div><div class="kicker light"><span class="en">GET IN TOUCH </span><span class="ar" hidden>تواصل معنا</span></div><h2>We're here to help.</h2><p>Contact us for any inquiries or to request a consultation.</p></div>
+    <div><div class="kicker light"><span class="en">GET IN TOUCH </span><span class="ar" hidden>تواصل معنا</span></div><h2><span class="en">We're here to help.</span><span class="ar" hidden>إحنا هنا عشان نساعدك.</span></h2><p><span class="en">Contact us for any inquiries or to request a consultation.</span><span class="ar" hidden>تواصل معنا لأي استفسار أو لطلب استشارة.</span></p></div>
   </div>
   <div class="contact-grid">
     <div class="contact-info">
       <div class="crow"><span class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 3a2 2 0 0 1-.4 2.1L8 10.3a16 16 0 0 0 6 6l1.5-1.4a2 2 0 0 1 2-.4c1 .3 2 .5 3 .6a2 2 0 0 1 1.5 2Z"/></svg></span><div><small class="en">Phone</small><small class="ar" hidden>الهاتف</small><strong>0502295525</strong><br><strong>01212520555</strong></div></div>
       <div class="crow"><span class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg></span><div><small class="en">Email</small><small class="ar" hidden>البريد الإلكتروني</small><strong>info@track-egy.com</strong></div></div>
       <div class="crow"><span class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><div><small class="en">Egypt (Head Office)</small><small class="ar" hidden>مصر (المقر الرئيسي)</small><strong class="en">Mansoura, First Suez Canal Street, above Tomah Restaurant</strong><strong class="ar" hidden>المنصورة، أول شارع قناة السويس، فوق مطعم تومة</strong></div></div>
-      <div class="crow"><span class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><div><small class="en">Saudi Arabia (Branch)</small><small class="ar" hidden>المملكة العربية السعودية (فرع)</small><strong class="en">[Branch address to be confirmed]</strong><strong class="ar" hidden>[عنوان الفرع — يُحدَّد]</strong></div></div>
+      <div class="crow"><span class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><div><small class="en">Saudi Arabia</small><small class="ar" hidden>المملكة العربية السعودية</small><strong class="en">We have a branch in Saudi Arabia — contact our Egypt office for details.</strong><strong class="ar" hidden>لدينا فرع في المملكة العربية السعودية — تواصل مع مكتب مصر لمزيد من التفاصيل.</strong></div></div>
     </div>
-    <form class="form" onsubmit="event.preventDefault();alert('Demo form — connect it to email/WhatsApp after final setup.');">
+    <form class="form" onsubmit="event.preventDefault();alert(document.body.classList.contains('lang-ar') ? 'نموذج تجريبي — هيتم ربطه بالإيميل/واتساب بعد الإعداد النهائي.' : 'Demo form — connect it to email/WhatsApp after final setup.');">
       <div class="form-grid">
-        <div class="field"><label>Your Name</label><input placeholder="Your Name"></div>
-        <div class="field"><label>Your Email</label><input type="email" placeholder="Your Email"></div>
-        <div class="field full"><label>Your Message</label><textarea placeholder="Your Message"></textarea></div>
-        <div class="field full"><button class="btn btn-primary" type="submit">Send Message →</button></div>
+        <div class="field"><label><span class="en">Your Name</span><span class="ar" hidden>الاسم</span></label><input data-en-ph="Your Name" data-ar-ph="الاسم" placeholder="Your Name"></div>
+        <div class="field"><label><span class="en">Your Email</span><span class="ar" hidden>البريد الإلكتروني</span></label><input type="email" data-en-ph="Your Email" data-ar-ph="البريد الإلكتروني" placeholder="Your Email"></div>
+        <div class="field full"><label><span class="en">Your Message</span><span class="ar" hidden>رسالتك</span></label><textarea data-en-ph="Your Message" data-ar-ph="رسالتك" placeholder="Your Message"></textarea></div>
+        <div class="field full"><button class="btn btn-primary" type="submit"><span class="en">Send Message →</span><span class="ar" hidden>إرسال الرسالة ←</span></button></div>
       </div>
     </form>
-    <div class="together"><h3>Let's Build<br>Something<br>Great Together</h3></div>
+    <div class="together"><h3><span class="en">Let's Build<br>Something<br>Great Together</span><span class="ar" hidden>يلا نبني<br>حاجة عظيمة<br>مع بعض</span></h3></div>
   </div>
 </div></section>
 </main>
@@ -601,7 +616,7 @@ body.lang-ar .masar-chat-msg-assistant{align-self:flex-end;border-bottom-left-ra
     <div><h4>Quick Links</h4><div class="footer-links"><a href="#home">Home</a><a href="#about">About Us</a><a href="#services">Services</a></div></div>
     <div><h4>&nbsp;</h4><div class="footer-links"><a href="#products">Products</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div></div>
     <div><h4>Follow Us</h4><div class="social">
-      <a href="#" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="#c9d4ef"><path d="M13 22v-8h3l1-4h-4V7.5c0-1.2.3-2 2-2H17V2h-3c-3 0-4.5 1.7-4.5 4.5V10H7v4h2.5v8Z"/></svg></a>
+      <a href="https://www.facebook.com/share/1DKzpLDZBc/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="#c9d4ef"><path d="M13 22v-8h3l1-4h-4V7.5c0-1.2.3-2 2-2H17V2h-3c-3 0-4.5 1.7-4.5 4.5V10H7v4h2.5v8Z"/></svg></a>
       <a href="#" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="#c9d4ef"><path d="M4 4h4v16H4zM6 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm5 6h4v2.2c.7-1.2 2-2.4 4-2.4 3 0 5 2 5 5.7V20h-4v-6.5c0-1.7-.6-2.7-2-2.7-1.6 0-2.5 1.1-2.5 2.7V20h-4Z"/></svg></a>
       <a href="#" aria-label="YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="#c9d4ef"><path d="M22 12s0-3.2-.4-4.7c-.2-.9-.9-1.6-1.8-1.8C18.3 5 12 5 12 5s-6.3 0-7.8.5c-.9.2-1.6.9-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.7c.2.9.9 1.6 1.8 1.8C5.7 19 12 19 12 19s6.3 0 7.8-.5c.9-.2 1.6-.9 1.8-1.8.4-1.5.4-4.7.4-4.7ZM10 15V9l5.2 3Z"/></svg></a>
       <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="#c9d4ef"><path d="M3 3h4.5l4 5.6L16.2 3H21l-6.9 8.9L21 21h-4.5l-4.3-6-5 6H3l7.3-9.3Z"/></svg></a>
@@ -627,6 +642,10 @@ body.lang-ar .masar-chat-msg-assistant{align-self:flex-end;border-bottom-left-ra
     document.querySelectorAll('.en').forEach(function(el){
       if(isAr) el.setAttribute('hidden',''); else el.removeAttribute('hidden');
     });
+    document.querySelectorAll('[data-en-ph]').forEach(function(el){
+      el.setAttribute('placeholder', isAr ? el.getAttribute('data-ar-ph') : el.getAttribute('data-en-ph'));
+    });
+    if (typeof window.masarChatSetLang === 'function') window.masarChatSetLang(lang);
   }
   switcher.addEventListener('click', function(){
     setLang(body.classList.contains('lang-ar') ? 'en' : 'ar');
@@ -642,27 +661,9 @@ body.lang-ar .masar-chat-msg-assistant{align-self:flex-end;border-bottom-left-ra
     {en:'Home', ar:'الرئيسية', href:'#home'},
     {en:'About Us', ar:'من نحن', href:'#about'},
     {en:'Services', ar:'خدماتنا', href:'#services'},
-    {en:'Trading & Supplies', ar:'التجارة والتوريدات', href:'#services'},
-    {en:'Technology Solutions', ar:'حلول التكنولوجيا', href:'#services'},
-    {en:'Security Solutions', ar:'حلول الأمن والمراقبة', href:'#services'},
-    {en:'Integrated Security Systems', ar:'أنظمة الأمن المتكاملة', href:'#services'},
-    {en:'Fiber Optic Solutions', ar:'حلول الألياف الضوئية', href:'#services'},
-    {en:'Networking Solutions', ar:'حلول الشبكات', href:'#services'},
-    {en:'Technical Support', ar:'الدعم الفني', href:'#services'},
-    {en:'Project Solutions', ar:'حلول المشاريع', href:'#services'},
     {en:'Products', ar:'منتجاتنا', href:'#products'},
-    {en:'Electronics & Devices', ar:'الإلكترونيات والأجهزة', href:'#products'},
-    {en:'Security Systems', ar:'أنظمة الأمن', href:'#products'},
-    {en:'Networking Equipment', ar:'معدات الشبكات', href:'#products'},
-    {en:'Fiber Splicing Equipment & Accessories', ar:'معدات لحام الألياف الضوئية وإكسسواراتها', href:'#products'},
-    {en:'Electrical Supplies', ar:'المستلزمات الكهربائية', href:'#products'},
-    {en:'IT Solutions', ar:'حلول تقنية المعلومات', href:'#products'},
     {en:'Projects', ar:'مشاريعنا', href:'#projects'},
-    {en:'Boulevard City', ar:'بوليفارد سيتي', href:'#projects'},
-    {en:'City Walk', ar:'سيتي ووك', href:'#projects'},
-    {en:'Contact Us', ar:'تواصل معنا', href:'#contact'},
-    {en:'Phone', ar:'الهاتف', href:'#contact'},
-    {en:'Email', ar:'البريد الإلكتروني', href:'#contact'}
+    {en:'Contact Us', ar:'تواصل معنا', href:'#contact'}
   ];
 
   var overlay = document.getElementById('searchOverlay');
