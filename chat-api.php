@@ -35,7 +35,7 @@ $ANTHROPIC_API_KEY = 'PASTE-YOUR-ANTHROPIC-API-KEY-HERE';
 // 2) Company information the assistant will use to answer questions.
 //    Edit freely as your business details change.
 // ------------------------------------------------------------------
-$SYSTEM_PROMPT = <<<PROMPT
+$SYSTEM_PROMPT_BASE = <<<PROMPT
 You are the friendly customer-service assistant for "Masar Trading" (مسار للتجارة), also known as "Tech Track".
 
 Company facts you can share when relevant:
@@ -61,12 +61,27 @@ Company facts you can share when relevant:
   technical support.
 
 Instructions:
-- Reply in the SAME language the customer wrote in (Arabic or English). If they mix both, prefer Arabic.
+- {LANGUAGE_INSTRUCTION}
 - Be concise, warm, and helpful — a few short sentences or a short list, not long essays.
 - Answer general questions about the company, its services/products, working hours (if asked, say to confirm exact hours by phone), and how to get in touch.
 - If you don't know something specific (like an exact price or stock availability), say so honestly and suggest contacting the team directly by phone, WhatsApp or email.
 - Never invent facts about the company that are not given above.
 PROMPT;
+
+// The widget sends the site's currently active language toggle (ar/en) with
+// every message, so the assistant always speaks whichever language the
+// visitor currently has the site set to — same as every other piece of text
+// on the page — instead of guessing from what they typed.
+function masar_language_instruction($lang) {
+    if ($lang === 'ar') {
+        return 'The visitor currently has the ARABIC version of the site open. Always reply in Arabic, even if they type in English or another language.';
+    }
+    if ($lang === 'en') {
+        return 'The visitor currently has the ENGLISH version of the site open. Always reply in English, even if they type in Arabic or another language.';
+    }
+    // Fallback if no lang was sent: match whatever language the customer wrote in.
+    return 'Reply in the SAME language the customer wrote in (Arabic or English). If they mix both, prefer Arabic.';
+}
 
 // ------------------------------------------------------------------
 // You shouldn't need to change anything below this line.
@@ -91,12 +106,15 @@ $raw = file_get_contents('php://input');
 $payload = json_decode($raw, true);
 $message = isset($payload['message']) ? trim((string) $payload['message']) : '';
 $history = isset($payload['history']) && is_array($payload['history']) ? $payload['history'] : [];
+$lang = isset($payload['lang']) && in_array($payload['lang'], ['ar', 'en'], true) ? $payload['lang'] : '';
 
 if ($message === '') {
     http_response_code(400);
     echo json_encode(['error' => 'empty_message']);
     exit;
 }
+
+$SYSTEM_PROMPT = str_replace('{LANGUAGE_INSTRUCTION}', masar_language_instruction($lang), $SYSTEM_PROMPT_BASE);
 
 // Build the message list: prior turns + the new user message.
 $messages = [];

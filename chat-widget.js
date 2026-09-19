@@ -85,8 +85,15 @@
 
   // Exposed so the site-wide language switcher can refresh widget-only text
   // (the placeholder attribute can't be toggled via the normal .en/.ar [hidden] trick).
+  // Also re-localizes the greeting bubble if the visitor switches language
+  // before ever actually chatting (no real exchange to preserve yet), so the
+  // widget always matches the site's current language like everything else.
+  var greetingBubble = null;
   window.masarChatSetLang = function (lang) {
     input.setAttribute('placeholder', STRINGS[lang].placeholder);
+    if (greetingBubble && history.length === 0) {
+      greetingBubble.textContent = STRINGS[lang].greeting;
+    }
   };
 
   function scrollToBottom() {
@@ -116,7 +123,7 @@
     toggleBtn.setAttribute('aria-expanded', 'true');
     window.masarChatSetLang(currentLang());
     if (!greeted) {
-      addBubble(t('greeting'), 'assistant');
+      greetingBubble = addBubble(t('greeting'), 'assistant');
       greeted = true;
     } else if (messagesEl.children.length === 0 && history.length > 0) {
       // Panel was closed and reopened (or the page reloaded) — replay the
