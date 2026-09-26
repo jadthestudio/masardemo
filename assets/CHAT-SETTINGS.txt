@@ -1,0 +1,17 @@
+CHAT SETTINGS (index.html, near the bottom: var MASAR_CHAT_CONFIG)
+==================================================================
+whatsapp:          the number that receives the WhatsApp link (201212520555)
+hours:             null = the bot never says anyone is away.
+                   Set it to real working hours and, outside them, the bot says the team is away
+                   and still gives the WhatsApp link:
+                   hours: { tz:'Africa/Cairo', days:[0,1,2,3,4,6], start:'09:00', end:'18:00',
+                            label:{ en:'Cairo time', ar:'بتوقيت القاهرة' } }     (0 = Sunday)
+feedbackEndpoint:  '' = the 3-face rating is shown but NOT saved anywhere.
+                   To collect it, give a URL that accepts POST with JSON:
+                   { "rating":"bad|ok|good", "lang":"ar|en", "topic":"price|quote|support|text",
+                     "page":"/path", "time":"ISO date" }
+                   (no message text is ever sent). The URL must allow CORS from the website.
+
+To ALWAYS show the "team is away" message (for example while nobody is watching WhatsApp),
+set   hours: { tz:'Africa/Cairo', days: [], start:'09:00', end:'18:00' }
+(an empty list of days means "never open"). Set it back to null when the team is available.

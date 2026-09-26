@@ -3,21 +3,78 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Masar Trading | Tech Track</title>
-<meta name="description" content="Masar Trading (مسار للتجارة) — your trusted partner for smart trading solutions.">
+<title>Track Trade | مسار للتجارة</title>
+<meta name="description" content="Track Trade (مسار للتجارة) — your trusted partner for smart trading solutions.">
+<link rel="canonical" href="https://track-egy.com/">
+<meta name="robots" content="index, follow">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="assets/logo-mark.svg">
+<link rel="apple-touch-icon" href="assets/logo-lockup.png">
+
+<!-- Open Graph / Facebook / WhatsApp preview -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://track-egy.com/">
+<meta property="og:title" content="Track Trade | مسار للتجارة">
+<meta property="og:description" content="Track Trade (مسار للتجارة) — your trusted partner for smart trading solutions.">
+<meta property="og:image" content="https://track-egy.com/assets/logo-lockup.png">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="ar_AR">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Track Trade | مسار للتجارة">
+<meta name="twitter:description" content="Track Trade (مسار للتجارة) — your trusted partner for smart trading solutions.">
+<meta name="twitter:image" content="https://track-egy.com/assets/logo-lockup.png">
+
+<!-- Structured data: Organization -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Track Trade",
+  "alternateName": "مسار للتجارة",
+  "url": "https://track-egy.com/",
+  "logo": "https://track-egy.com/assets/logo-lockup.png",
+  "email": "info@track-egy.com",
+  "telephone": "+201212520555",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Mansoura",
+    "addressCountry": "EG"
+  },
+  "sameAs": []
+}
+</script>
+<meta name="color-scheme" content="light dark">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Cairo:wght@500;700;800;900&display=swap" rel="stylesheet">
+<script>
+(function(){var t=null;try{t=localStorage.getItem("trackTheme")}catch(e){}
+if(t!=="dark"&&t!=="light"){t=(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light"}
+document.documentElement.setAttribute("data-theme",t)})();
+</script>
 <style>
 :root{
   --navy:#0b1c40;--navy-2:#132a5c;--blue:#1c4bb8;--red:#e2231c;
-  --ink:#0f1c3a;--muted:#6b7590;--bg:#f2f4f9;--line:#e6eaf3;--white:#fbfcfe;
+  --ink:#14213d;--muted:#55617d;--bg:#eaeff8;--line:#d9e1f0;--white:#f7f9fc;
+  /* theme tokens (light) */
+  --surface:#fdfeff;--icon-bg:#e3eafa;--blue-ic:#1c4bb8;--navy-ink:#0b1c40;--red-ink:#e2231c;
+  --nav-bg:rgba(247,249,252,.92);--dots:rgba(11,28,64,.05);--shadow:rgba(11,28,64,.10);--shape:#0b1c40;--focus:#1c4bb8;
+  color-scheme:light;
+}
+:root[data-theme="dark"]{
+  --ink:#e8eeff;--muted:#9aa8cc;--bg:#0b1430;--line:#1f2d55;--white:#070d1f;
+  --surface:#0f1a38;--icon-bg:#182752;--blue-ic:#8fb0ff;--navy-ink:#e8eeff;--red-ink:#ff6b63;
+  --nav-bg:rgba(7,13,31,.92);--dots:rgba(255,255,255,.045);--shadow:rgba(0,0,0,.45);--shape:#8fb0ff;--focus:#8fb0ff;
+  color-scheme:dark;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;font-family:Inter,Arial,sans-serif;color:var(--ink);background:var(--white);line-height:1.6;position:relative}
 body:before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
   background:
-    radial-gradient(circle at 1px 1px, rgba(11,28,64,.05) 1px, transparent 0) 0 0/28px 28px,
+    radial-gradient(circle at 1px 1px, var(--dots) 1px, transparent 0) 0 0/28px 28px,
     linear-gradient(135deg, rgba(226,35,28,.03) 0 2px, transparent 2px 34px);
 }
 .geo{position:absolute;pointer-events:none;z-index:0}
@@ -49,53 +106,43 @@ body.lang-ar .lang-switch span:last-child{color:#8a97bc}
 /* Full RTL layout when Arabic is active */
 body.lang-ar{direction:rtl}
 
-/* Search — compact dropdown anchored under the search icon, blurred backdrop */
-.search-overlay{position:fixed;inset:0;background:rgba(8,15,36,.35);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);z-index:100;
-  opacity:0;pointer-events:none;transition:opacity .2s ease}
-.search-overlay.open{opacity:1;pointer-events:auto}
-.search-box{position:absolute;top:96px;right:max(4%,calc((100% - 1200px)/2));width:min(380px,90vw);background:#fff;
-  border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.25);padding:16px;display:flex;flex-direction:column;
-  opacity:0;transform:translateY(-10px) scale(.98);transition:opacity .2s ease,transform .2s ease}
-.search-overlay.open .search-box{opacity:1;transform:translateY(0) scale(1)}
-body.lang-ar .search-box{right:auto;left:max(4%,calc((100% - 1200px)/2))}
-.search-box-head{display:flex;align-items:center;gap:10px}
-.search-box input{flex:1;width:100%;border:1.5px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;font-size:15px;outline:none}
+/* Search overlay */
+.search-overlay{position:fixed;inset:0;background:rgba(8,15,36,.6);backdrop-filter:blur(3px);z-index:100;display:none;align-items:flex-start;justify-content:center;padding-top:12vh}
+.search-overlay.open{display:flex}
+.search-box{background:var(--surface);border-radius:16px;width:min(560px,90vw);padding:20px;box-shadow:0 30px 70px rgba(0,0,0,.35)}
+.search-box input{width:100%;border:1.5px solid var(--line);border-radius:10px;padding:14px 16px;font:inherit;font-size:16px;outline:none;background:var(--surface);color:var(--ink)}
 .search-box input:focus{border-color:var(--blue)}
-.search-results{margin-top:10px;max-height:60vh;overflow:auto}
-.search-results a{display:flex;justify-content:space-between;align-items:center;padding:12px 13px;border-radius:10px;color:var(--ink);font-weight:700;font-size:14px}
+.search-results{margin-top:12px;max-height:50vh;overflow:auto}
+.search-results a{display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-radius:10px;color:var(--ink);font-weight:700;font-size:14px}
 .search-results a:hover,.search-results a.hl{background:var(--bg)}
 .search-results a small{color:var(--muted);font-weight:600}
 .search-empty{color:var(--muted);font-size:13.5px;padding:10px 4px}
-.search-close{cursor:pointer;color:var(--muted);font-size:20px;line-height:1;border:0;background:none;
-  width:36px;height:36px;border-radius:50%;display:grid;place-items:center;flex:none}
-.search-close:hover{background:var(--bg)}
+.search-close{float:right;cursor:pointer;color:var(--muted);font-size:20px;line-height:1;border:0;background:none}
 .icon-btn{cursor:pointer}
-@media(max-width:560px){.search-box{top:70px;right:3%;left:3%;width:auto}
-  body.lang-ar .search-box{left:3%;right:3%}}
 
 /* Nav */
-.nav{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{position:sticky;top:0;z-index:30;background:var(--nav-bg);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .nav-inner{height:86px;display:flex;align-items:center;justify-content:space-between;gap:28px}
 .brand{display:flex;align-items:center;gap:12px}
 .logo-mark{width:28px;height:38px;position:relative;flex:none;display:flex;flex-direction:column;justify-content:space-between}
 .logo-mark i{width:28px;height:16px;display:block}
 .logo-mark i.a{background:var(--red);clip-path:polygon(0 0,100% 0,100% 60%,55% 60%,55% 100%,0 100%)}
 .logo-mark i.b{background:var(--navy);clip-path:polygon(100% 100%,0 100%,0 40%,45% 40%,45% 0,100% 0)}
-.brand-text{font-weight:900;color:var(--navy);line-height:1.05;font-size:22px}
+.brand-text{font-weight:900;color:var(--navy-ink);line-height:1.05;font-size:22px}
 .brand-text small{display:block;font-size:11px;font-weight:700;color:var(--muted);letter-spacing:.3px}
 .links{display:flex;gap:6px;align-items:center}
 .links a{padding:10px 14px;border-radius:8px;font-weight:800;font-size:14.5px;color:var(--ink);text-align:center;line-height:1.3}
 .links a small{display:block;font-weight:600;font-size:11px;color:var(--muted);margin-top:1px}
-.links a.active,.links a:hover{color:var(--red)}
+.links a.active,.links a:hover{color:var(--red-ink)}
 .nav-right{display:flex;align-items:center;gap:14px}
-.icon-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--navy)}
+.icon-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--navy-ink)}
 .nav-cta{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:9px;background:var(--red);color:#fff;font-weight:800;font-size:14.5px;white-space:nowrap}
 
 /* Hero */
 .hero{position:relative;overflow:hidden;background:linear-gradient(120deg,#081434 0%,#0d2058 45%,#1c4bb8 100%);color:#fff}
 .hero:after{content:"";position:absolute;width:640px;height:640px;border:1px solid rgba(255,255,255,.12);border-radius:50%;right:-220px;top:-260px}
 .hero-grid{min-height:600px;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:56px;position:relative;z-index:1;padding:70px 0}
-.kicker{color:var(--red);font-weight:800;letter-spacing:1.5px;font-size:12.5px}
+.kicker{color:var(--red-ink);font-weight:800;letter-spacing:1.5px;font-size:12.5px}
 .kicker.light{color:#ff8b85}
 .hero h1.ar{font-size:clamp(32px,4.2vw,44px);margin:10px 0 2px;color:#fff;font-weight:900}
 .hero h1.en{font-size:clamp(30px,4vw,40px);margin:0 0 14px;font-weight:900;letter-spacing:-.5px}
@@ -105,7 +152,7 @@ body.lang-ar .search-box{right:auto;left:max(4%,calc((100% - 1200px)/2))}
 .btn{display:inline-flex;align-items:center;gap:8px;justify-content:center;padding:14px 22px;border-radius:9px;font-weight:800;font-size:14.5px;border:1px solid transparent}
 .btn-primary{background:var(--red);color:#fff}
 .btn-outline{background:transparent;border-color:rgba(255,255,255,.5);color:#fff}
-.btn-outline.dark{border-color:var(--navy);color:var(--navy)}
+.btn-outline.dark{border-color:var(--navy-ink);color:var(--navy-ink)}
 .hero-photo{position:relative;border-radius:20px;overflow:hidden;min-height:400px;
   background:
     linear-gradient(160deg,rgba(6,13,34,.6),rgba(6,13,34,.25) 60%),
@@ -140,8 +187,8 @@ body.lang-ar .search-box{right:auto;left:max(4%,calc((100% - 1200px)/2))}
 /* Quick icon strip */
 .quickbar{background:var(--white);border-bottom:1px solid var(--line)}
 .quick-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);margin-top:-1px}
-.quick-item{background:#fff;padding:26px 14px;text-align:center}
-.quick-item .qi{width:42px;height:42px;margin:0 auto 12px;border-radius:10px;background:#eef2fb;display:grid;place-items:center;color:var(--blue)}
+.quick-item{background:var(--surface);padding:26px 14px;text-align:center}
+.quick-item .qi{width:42px;height:42px;margin:0 auto 12px;border-radius:10px;background:var(--icon-bg);display:grid;place-items:center;color:var(--blue-ic)}
 .quick-item h4{margin:0 0 3px;font-size:14px}
 .quick-item span.ar{display:block;font-size:12.5px;color:var(--muted)}
 .quick-item .bar{width:26px;height:3px;background:var(--red);margin:10px auto 0;border-radius:2px}
@@ -150,7 +197,7 @@ section{padding:76px 0}
 .section-head{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:40px}
 .section-head h2{font-size:36px;line-height:1.15;margin:8px 0}
 .section-head p{max-width:480px;color:var(--muted);margin:0;font-size:15px}
-.view-all{font-weight:800;color:var(--red);font-size:14px;white-space:nowrap}
+.view-all{font-weight:800;color:var(--red-ink);font-size:14px;white-space:nowrap}
 
 /* About */
 .about{background:var(--bg)}
@@ -170,28 +217,28 @@ section{padding:76px 0}
 .about-photo .ap-chip span.ar{display:block;color:#aebbdd;font-size:11px;margin-top:2px;font-weight:600}
 
 .partners-strip{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
-.partners-strip .plogo{flex:1;min-width:90px;border:1px solid var(--line);border-radius:10px;padding:14px 10px;text-align:center;color:var(--muted);font-weight:800;font-size:12.5px;background:#fff}
+.partners-strip .plogo{flex:1;min-width:90px;border:1px solid var(--line);border-radius:10px;padding:14px 10px;text-align:center;color:var(--muted);font-weight:800;font-size:12.5px;background:var(--surface)}
 .about-body h2{font-size:30px;margin:8px 0 14px}
 .about-body p{color:var(--muted);font-size:15px;max-width:520px}
-.quote-card{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:26px}
-.quote-card .mark{font-size:34px;color:var(--red);font-weight:900;line-height:1}
+.quote-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:26px}
+.quote-card .mark{font-size:34px;color:var(--red-ink);font-weight:900;line-height:1}
 .quote-card h3{font-size:21px;margin:10px 0 18px;font-weight:900}
 .quote-card .who{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:12px}
 .quote-card .who b{display:block;color:var(--ink);font-size:14px}
 
 /* Cards */
-.cards{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
-.card{padding:24px 18px;border:1px solid var(--line);border-radius:16px;background:#fff;text-align:left;transition:.2s}
-.card:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(11,28,64,.08)}
-.icon{width:44px;height:44px;border-radius:11px;background:#eef2fb;display:grid;place-items:center;color:var(--blue);margin-bottom:16px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.card{padding:24px 18px;border:1px solid var(--line);border-radius:16px;background:var(--surface);text-align:left;transition:.2s}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 40px var(--shadow)}
+.icon{width:44px;height:44px;border-radius:11px;background:var(--icon-bg);display:grid;place-items:center;color:var(--blue-ic);margin-bottom:16px}
 .card h3{margin:0 0 3px;font-size:15px}
 .card span.ar{display:block;color:var(--muted);font-size:12.5px}
 .card .bar{width:22px;height:3px;background:var(--red);margin-top:12px;border-radius:2px}
 
 /* Products */
-.products{background:var(--white)}
-.pcards{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
-.pcard{min-height:190px;border-radius:16px;padding:20px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;color:#fff}
+.products{background:var(--bg)}
+.pcards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.pcard{min-height:210px;border-radius:16px;padding:20px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;color:#fff}
 .pcard .tone{position:absolute;inset:0}
 .pcard .tone:after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(120deg,rgba(255,255,255,.07) 0 1px,transparent 1px 18px)}
 .pcard .big-icon{position:absolute;right:-10px;top:-10px;opacity:.16;transform:scale(2.6)}
@@ -204,7 +251,7 @@ section{padding:76px 0}
 /* Why */
 .why{background:var(--navy);color:#fff}
 .why-grid{display:grid;grid-template-columns:1.1fr repeat(4,.75fr);gap:24px;align-items:center}
-.why h2{font-size:28px;margin:8px 0 10px}
+.why h2{font-size:28px;margin:8px 0 10px;line-height:1.25}
 .why p{color:#b9c6ea;font-size:14.5px;max-width:400px}
 .why-item{display:flex;gap:12px;align-items:flex-start}
 .why-item .wi{width:40px;height:40px;border-radius:10px;background:rgba(255,255,255,.1);display:grid;place-items:center;flex:none}
@@ -212,7 +259,7 @@ section{padding:76px 0}
 .why-item span.ar{font-size:12.5px;color:#a9b7de}
 
 /* Projects */
-.projects{background:var(--bg)}
+.projects{background:var(--white)}
 .proj-top{display:grid;grid-template-columns:1.4fr .6fr;gap:24px;align-items:center;margin-bottom:34px}
 .proj-top p{color:var(--muted);font-size:15px;max-width:480px;margin:10px 0 18px}
 .proj-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
@@ -222,7 +269,7 @@ section{padding:76px 0}
 .pj:after{content:"";position:absolute;width:60px;height:60px;border:1.5px solid rgba(255,255,255,.25);right:-20px;top:-20px;transform:rotate(15deg)}
 .pj h4{margin:0;font-size:15px;position:relative}
 .pj span{font-size:12px;color:#c3cfec;position:relative}
-.partners{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;justify-content:space-between}
+.partners{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px;display:flex;flex-direction:column;justify-content:space-between}
 .partners h4{margin:0 0 6px}
 .partners p{font-size:13px;color:var(--muted);margin:0}
 .dots{display:flex;gap:6px;margin-top:14px}
@@ -263,10 +310,53 @@ section{padding:76px 0}
 
 .whatsapp{position:fixed;right:26px;bottom:26px;width:54px;height:54px;border-radius:50%;background:#22c55e;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.25);z-index:40}
 
+/* Theme toggle (topbar) */
+.topbar-right{display:flex;align-items:center;gap:14px}
+.theme-toggle{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:#fff;cursor:pointer;padding:0}
+.theme-toggle:hover{background:rgba(255,255,255,.18)}
+.theme-toggle:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.theme-toggle svg{width:15px;height:15px}
+.theme-toggle .ic-sun{display:none}
+:root[data-theme="dark"] .theme-toggle .ic-sun{display:block}
+:root[data-theme="dark"] .theme-toggle .ic-moon{display:none}
+
+/* Slogan pill */
+.motto{display:inline-flex;align-items:center;gap:10px;margin:0 0 16px;padding:8px 16px;border:1px solid rgba(255,255,255,.28);border-radius:999px;background:rgba(255,255,255,.08);font-weight:800;font-size:15px;color:#fff}
+.motto svg{width:16px;height:16px;color:#ff8b85;flex:none}
+.footer .motto-line{margin:12px 0 0;font-weight:800;color:#fff;font-size:14px}
+
+/* Service card descriptions */
+.card{display:flex;flex-direction:column}
+.card .desc{font-size:13px;color:var(--muted);margin:10px 0 14px;line-height:1.55}
+.card .bar{margin-top:auto}
+body.lang-ar .card{text-align:right}
+
+/* About — partners in success */
+.about-partners{margin-top:20px;max-width:560px}
+.about-partners h3{margin:0 0 10px;font-size:15px;font-weight:800;color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border:1px solid var(--line);background:var(--surface);border-radius:999px;font-size:13px;font-weight:700;color:var(--ink);line-height:1.3}
+.chip:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);flex:none}
+
+
+/* Contact form */
+.form .btn{cursor:pointer;font-family:inherit}
+.form-actions{display:flex;flex-wrap:wrap;gap:10px}
+.btn-wa{background:#22c55e;color:#04220f}
+.btn-wa:hover{background:#2fd56d}
+.btn-ghost{background:transparent;border-color:rgba(255,255,255,.4);color:#fff}
+.btn-ghost:hover{background:rgba(255,255,255,.08)}
+.form-lead{margin:0 0 16px;font-size:13.5px;color:#c9d4ef}
+.form-note{margin:16px 0 0;padding-top:14px;border-top:1px solid rgba(255,255,255,.12);font-size:12px;line-height:1.65;color:#aebbdd}
+.form-note b{color:#fff}
+.form-status{margin-top:12px;font-size:13px;font-weight:700;min-height:1.2em}
+.form-status.err{color:#ffb4af}
+.form-status.ok{color:#8ff0b0}
+
 /* AI chat assistant widget */
 .masar-chat-toggle{position:fixed;left:26px;bottom:26px;width:54px;height:54px;border-radius:50%;background:var(--red);border:0;color:#fff;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.25);z-index:40;cursor:pointer}
 .masar-chat-toggle svg{width:26px;height:26px}
-.masar-chat-panel{position:fixed;left:26px;bottom:92px;width:min(360px,88vw);max-height:min(520px,70vh);background:#fff;border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.3);z-index:41;display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--line)}
+.masar-chat-panel{position:fixed;left:26px;bottom:92px;width:min(360px,88vw);max-height:min(520px,70vh);background:var(--surface);border-radius:16px;box-shadow:0 24px 60px rgba(0,0,0,.3);z-index:41;display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--line)}
 .masar-chat-panel[hidden]{display:none}
 .masar-chat-head{background:var(--navy);color:#fff;padding:14px 44px 14px 16px;display:flex;align-items:center;position:relative;font-weight:800;font-size:14.5px;direction:ltr;text-align:left}
 .masar-chat-head-id{display:flex;align-items:center;gap:9px}
@@ -284,15 +374,18 @@ section{padding:76px 0}
 .masar-chat-messages{flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:10px;background:var(--bg)}
 .masar-chat-msg{max-width:82%;padding:10px 13px;border-radius:12px;font-size:13.5px;line-height:1.5;white-space:pre-wrap}
 .masar-chat-msg-user{align-self:flex-end;background:var(--blue);color:#fff;border-bottom-right-radius:3px}
-.masar-chat-msg-assistant{align-self:flex-start;background:#fff;color:var(--ink);border:1px solid var(--line);border-bottom-left-radius:3px}
+.masar-chat-msg-assistant{align-self:flex-start;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-bottom-left-radius:3px}
 body.lang-ar .masar-chat-msg-user{align-self:flex-start;border-bottom-right-radius:12px;border-bottom-left-radius:3px}
 body.lang-ar .masar-chat-msg-assistant{align-self:flex-end;border-bottom-left-radius:12px;border-bottom-right-radius:3px}
+.masar-chat-wa{display:inline-flex;align-items:center;gap:8px;margin-top:10px;padding:9px 14px;border-radius:9px;background:#22c55e;color:#04220f;font-weight:800;font-size:13px}
+.masar-chat-wa:hover{background:#2fd56d}
+.masar-chat-wa svg{width:16px;height:16px;flex:none}
 .masar-chat-typing span{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--muted);margin-right:3px;animation:masarBlink 1.2s infinite ease-in-out}
 .masar-chat-typing span:nth-child(2){animation-delay:.2s}
 .masar-chat-typing span:nth-child(3){animation-delay:.4s}
 @keyframes masarBlink{0%,80%,100%{opacity:.25}40%{opacity:1}}
-.masar-chat-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line);background:#fff}
-.masar-chat-form input{flex:1;border:1.5px solid var(--line);border-radius:9px;padding:10px 12px;font:inherit;font-size:13.5px;outline:none}
+.masar-chat-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line);background:var(--surface)}
+.masar-chat-form input{flex:1;border:1.5px solid var(--line);border-radius:9px;padding:10px 12px;font:inherit;font-size:13.5px;outline:none;background:var(--surface);color:var(--ink)}
 .masar-chat-form input:focus{border-color:var(--blue)}
 .masar-chat-form button{background:var(--red);color:#fff;border:0;border-radius:9px;width:40px;font-size:16px;cursor:pointer;flex:none}
 .masar-chat-form button:disabled{opacity:.5;cursor:default}
@@ -305,7 +398,7 @@ body.lang-ar .masar-chat-msg-assistant{align-self:flex-end;border-bottom-left-ra
   .links{display:none}
   .hero-grid{grid-template-columns:1fr}
   .quick-grid{grid-template-columns:repeat(3,1fr)}
-  .cards{grid-template-columns:repeat(3,1fr)}
+  .cards{grid-template-columns:repeat(2,1fr)}
   .pcards{grid-template-columns:repeat(2,1fr)}
   .about-grid{grid-template-columns:1fr}
   .why-grid{grid-template-columns:1fr 1fr}
@@ -314,19 +407,294 @@ body.lang-ar .masar-chat-msg-assistant{align-self:flex-end;border-bottom-left-ra
   .contact-grid{grid-template-columns:1fr}
   .together{align-items:flex-start;text-align:left;margin-top:18px}
   .footer-grid{grid-template-columns:1fr 1fr}
+  .statsbar .container{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:560px){
   section{padding:60px 0}
   .quick-grid,.cards,.pcards,.why-grid,.proj-grid,.footer-grid,.form-grid{grid-template-columns:1fr!important}
-  .statsbar .container{grid-template-columns:1fr 1fr!important}
-  .hp-icons{grid-template-columns:repeat(2,1fr)!important}
   .nav-inner{height:70px}
   .topbar-left a span{display:none}
   .nav-cta{display:none}
+  .section-head{flex-wrap:wrap;align-items:start}
 }
+
+/* ---- v6.7: friendlier, calmer, more organised ---- */
+section[id]{scroll-margin-top:92px}
+.skip{position:absolute;left:12px;top:-70px;z-index:300;background:#fff;color:#0b1c40;padding:10px 16px;border-radius:8px;font-weight:800;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.skip:focus{top:12px}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,[role="button"]:focus-visible{outline:2px solid var(--focus);outline-offset:3px;border-radius:6px}
+.hero a:focus-visible,.contact a:focus-visible,.contact button:focus-visible,.contact input:focus-visible,.contact textarea:focus-visible,.why a:focus-visible,.footer a:focus-visible,.topbar a:focus-visible,.topbar [role="button"]:focus-visible{outline-color:#ffb4af}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
+.lang-switch{padding:8px 4px}
+.theme-toggle{width:34px;height:34px}
+#services,#products,#projects,#about{position:relative;overflow:hidden}
+#services>.container,#products>.container,#projects>.container{position:relative;z-index:1}
+a.quick-item{display:block;transition:background .2s}
+a.quick-item:hover{background:var(--bg)}
+a.quick-item h4{color:var(--ink)}
+.view-all:hover{text-decoration:underline}
+body.lang-ar .buttons .btn svg,body.lang-ar .nav-cta svg{transform:scaleX(-1)}
+
+/* projects */
+.proj-grid{grid-template-columns:repeat(3,1fr);gap:18px}
+.pj{--pj-bg:linear-gradient(150deg,#132a5c,#1c4bb8);background:var(--pj-bg);min-height:250px;padding:20px;transition:transform .2s,box-shadow .2s}
+.pj:hover{transform:translateY(-4px);box-shadow:0 18px 40px var(--shadow)}
+.pj[hidden]{display:none!important}
+.pj .pj-art{position:absolute;inset-inline-end:22px;top:50%;width:104px;height:104px;margin-top:-52px;color:#fff;opacity:.2}
+.pj .pj-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}
+.pj .pj-img.ok{opacity:1}
+.pj .pj-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,12,32,.82),rgba(5,12,32,.05) 62%)}
+.pj .pj-cat{position:absolute;top:16px;inset-inline-start:16px;z-index:2;padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.26);backdrop-filter:blur(4px)}
+.pj .pj-cat span{color:#fff;font-size:11px;font-weight:800}
+.pj .pj-body{position:relative;z-index:2}
+.pj h4{font-size:16.5px;line-height:1.35;text-shadow:0 1px 8px rgba(0,0,0,.35)}
+.pj span{font-size:13px}
+.pj-cta{background:var(--surface)!important;color:var(--ink);border:1.5px dashed var(--line);justify-content:center;align-items:flex-start;gap:14px}
+.pj-cta:before,.pj-cta:after{display:none}
+.pj-cta .pj-plus{width:40px;height:40px;color:var(--red-ink);position:relative}
+.pj-cta h4{text-shadow:none;color:var(--ink)}
+.pj-cta span{color:var(--muted)}
+.pj-cta:hover{border-color:var(--red)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 26px}
+.filter{border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-weight:800;font-size:13.5px;padding:10px 16px;min-height:42px;border-radius:999px;cursor:pointer;transition:.15s}
+.filter:hover{border-color:var(--blue-ic)}
+.filter.on{background:var(--red);border-color:var(--red);color:#fff}
+.partners-band{margin-top:30px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px 24px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 26px}
+.partners-band h4{margin:0;font-size:15px;color:var(--ink)}
+
+/* mobile menu */
+.menu-btn{display:none;width:42px;height:42px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--navy-ink);place-items:center;cursor:pointer;padding:0}
+.links-cta{display:none}
+@media(max-width:1000px){
+  .menu-btn{display:grid}
+  .links{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:stretch;gap:2px;padding:12px 4% 16px;background:var(--surface);border-bottom:1px solid var(--line);box-shadow:0 24px 40px var(--shadow)}
+  .links.open{display:flex}
+  .links a{text-align:start;padding:14px 16px;font-size:16px}
+  .links a.links-cta{display:block;margin-top:8px;background:var(--red);color:#fff;text-align:center;border-radius:10px}
+  .links a.links-cta:hover{color:#fff}
+}
+
+/* ---- v6.8: brand-motif shapes, chat quick replies, partner logo grid ---- */
+.blk{position:absolute;pointer-events:none;z-index:0}
+.blk.r{background:var(--red);clip-path:polygon(0 0,100% 0,100% 58%,52% 58%,52% 100%,0 100%);opacity:.10}
+.blk.n{background:var(--shape);clip-path:polygon(100% 100%,0 100%,0 42%,48% 42%,48% 0,100% 0);opacity:.08}
+svg.blk.o{fill:none;stroke:var(--shape);stroke-width:1.6;opacity:.24;overflow:visible}
+svg.blk.o.red{stroke:var(--red);opacity:.32}
+.glow{position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:0}
+.glow.b{background:rgba(28,75,184,.15)}
+.glow.r{background:rgba(226,35,28,.09)}
+:root[data-theme="dark"] .glow.b{background:rgba(70,120,255,.13)}
+:root[data-theme="dark"] .glow.r{background:rgba(255,80,70,.09)}
+:root[data-theme="dark"] .blk.r{opacity:.14}
+:root[data-theme="dark"] .blk.n{opacity:.10}
+.geo.outline-circle{opacity:.2}
+.geo.outline-square{opacity:.2}
+
+/* partners logo grid */
+.clients{margin-top:36px}
+.clients h4{margin:0 0 14px;font-size:17px;color:var(--ink)}
+.clients-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+.cl-cell{background:var(--surface);border:1px solid var(--line);border-radius:14px;min-height:120px;padding:16px;display:flex;align-items:center;justify-content:center;text-align:center;transition:.2s}
+.cl-cell:hover{border-color:var(--blue-ic);transform:translateY(-2px);box-shadow:0 12px 28px var(--shadow)}
+.cl-name{font-weight:800;font-size:14px;line-height:1.45;color:var(--ink)}
+.cl-name[hidden]{display:none}
+.cl-img{max-width:100%;max-height:64px;object-fit:contain;filter:grayscale(1);opacity:.85;transition:.2s}
+.cl-cell:hover .cl-img{filter:none;opacity:1}
+:root[data-theme="dark"] .cl-img{filter:grayscale(1) brightness(0) invert(1)}
+:root[data-theme="dark"] .cl-cell:hover .cl-img{filter:grayscale(1) brightness(0) invert(1);opacity:1}
+@media(max-width:1000px){.clients-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:560px){.clients-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* chat quick replies */
+.masar-chat-quick{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.masar-chat-quick button,.masar-chat-link{border:1.5px solid var(--blue-ic);background:transparent;color:var(--blue-ic);font:inherit;font-weight:800;font-size:13px;padding:9px 12px;border-radius:10px;cursor:pointer;text-align:center;display:block;text-decoration:none}
+.masar-chat-quick button:hover,.masar-chat-link:hover{background:var(--blue-ic);color:var(--surface)}
+.masar-chat-links{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+
+/* ---- v6.9: about photo, hero slider, chat footer ---- */
+.about-visual{display:flex;flex-direction:column;gap:12px}
+.about-photo.has-img{min-height:0;aspect-ratio:1.42/1;background:#0b1c40;box-shadow:0 20px 50px var(--shadow);display:block}
+.about-photo.has-img:before,.about-photo.has-img:after{display:none}
+.about-photo .ap-img{width:100%;height:100%;object-fit:cover;object-position:50% 45%;display:block}
+.about-visual .ap-grid{position:static;inset:auto;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.about-visual .ap-chip{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:flex;flex-direction:row;align-items:center;gap:10px}
+.about-visual .ap-chip svg{width:20px;height:20px;flex:none;color:var(--blue-ic)}
+.about-visual .ap-chip span{color:var(--ink);font-size:12.5px;font-weight:800;line-height:1.3}
+.about-visual .ap-chip span.ar{display:block;color:var(--ink);font-size:12.5px;margin-top:0}
+.profile-dl{display:flex;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px 20px;transition:.2s;box-shadow:0 8px 20px var(--shadow)}
+.profile-dl:hover{border-color:var(--red);transform:translateY(-2px);box-shadow:0 14px 30px var(--shadow)}
+.profile-dl-ic{flex:none;width:54px;height:54px;border-radius:50%;background:linear-gradient(150deg,var(--red),#a6120c);display:grid;place-items:center;box-shadow:0 6px 16px rgba(226,35,28,.35)}
+.profile-dl-txt{display:flex;flex-direction:column;gap:3px}
+.profile-dl-txt b{color:var(--blue-ic);font-size:15.5px;text-decoration:underline;text-underline-offset:3px}
+.profile-dl:hover .profile-dl-txt b{color:var(--red)}
+.profile-dl-txt small{color:var(--muted);font-size:12px;font-weight:600}
+
+.hero-photo{min-height:430px}
+.hp-slides{position:absolute;inset:0}
+.hp-slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .6s,visibility .6s}
+.hp-slide.on{opacity:1;visibility:visible}
+.hp-slide .hp-art{position:absolute;top:84px;inset-inline-end:30px;width:128px;height:128px;color:#fff;opacity:.2}
+.hp-slide .hp-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s}
+.hp-slide .hp-img.ok{opacity:1}
+.hp-slide .hp-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,12,32,.86),rgba(5,12,32,.15) 65%)}
+.hp-copy{position:absolute;inset-inline:26px;bottom:74px;color:#fff}
+.hp-copy h3{margin:0 0 8px;font-size:26px;line-height:1.25;font-weight:900;text-shadow:0 2px 12px rgba(0,0,0,.35)}
+.hp-copy p{margin:0 0 16px;font-size:14.5px;line-height:1.6;color:#dbe4fa;max-width:380px}
+.hp-cta{display:inline-flex;align-items:center;gap:8px;background:var(--red);color:#fff;font-weight:800;font-size:13.5px;padding:11px 18px;border-radius:10px}
+.hp-cta:hover{background:#f0322b}
+.hp-bar{position:absolute;inset-inline:22px;bottom:18px;display:flex;align-items:center;justify-content:space-between;z-index:3}
+.hp-dots{display:flex;gap:8px}
+.hp-dot{width:10px;height:10px;padding:0;border-radius:50%;border:0;background:rgba(255,255,255,.35);cursor:pointer;transition:.2s}
+.hp-dot.on{width:26px;border-radius:6px;background:#fff}
+.hp-ctrl{display:flex;gap:8px}
+.hp-btn{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;padding:0;cursor:pointer;color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);backdrop-filter:blur(4px)}
+.hp-btn:hover{background:rgba(255,255,255,.28)}
+.hp-btn svg{width:16px;height:16px}
+.hp-btn .ic-play{display:none}
+.hp-btn[aria-pressed="true"] .ic-pause{display:none}
+.hp-btn[aria-pressed="true"] .ic-play{display:block}
+body.lang-ar .hp-btn#hpPrev svg,body.lang-ar .hp-btn#hpNext svg,body.lang-ar .hp-cta svg{transform:scaleX(-1)}
+.hp-copy .ar,.hp-copy h3.ar{text-align:start}
+
+.masar-chat-foot{padding:6px 12px 10px;text-align:center;background:var(--surface);border-top:1px solid var(--line)}
+.masar-chat-foot button{background:none;border:0;padding:4px 8px;font:inherit;font-size:12px;color:var(--muted);text-decoration:underline;cursor:pointer}
+.masar-chat-foot button:hover{color:var(--ink)}
+
+/* ---- v6.10: dropdown menus, solution panel, illustrated cards, chat rating ---- */
+body.lang-ar,body.lang-ar input,body.lang-ar button,body.lang-ar textarea{font-family:Cairo,Inter,Arial,sans-serif}
+body.lang-ar .links a small{font-size:14.5px;font-weight:800;color:inherit;margin-top:0}
+
+.pj{background:var(--pj-art,none) center/cover no-repeat,var(--pj-bg)}
+.pj .pj-art{display:none}
+.hp-slide{background:var(--hp-art,none) center/cover no-repeat}
+.hp-slide .hp-art{display:none}
+.hp-slide .hp-img.ok{filter:saturate(1.05)}
+
+/* dropdown navigation */
+.nav-dd{position:relative;display:flex;align-items:center}
+.nav-dd>.nav-link{padding-inline-end:4px}
+.dd-caret{width:22px;height:30px;border:0;background:none;color:var(--ink);cursor:pointer;display:grid;place-items:center;padding:0;border-radius:6px}
+.dd-caret svg{width:13px;height:13px;transition:transform .2s}
+.nav-dd.open .dd-caret svg{transform:rotate(180deg)}
+.dd-caret:hover{color:var(--red-ink)}
+.nav-menu{display:none;position:absolute;top:100%;inset-inline-start:0;min-width:270px;background:var(--surface);border:1px solid var(--line);border-radius:14px;box-shadow:0 24px 50px var(--shadow);padding:8px;z-index:60}
+.nav-menu a{display:block;text-align:start;padding:10px 14px;border-radius:9px;font-weight:700;font-size:14px;color:var(--ink);white-space:nowrap}
+.nav-menu a:hover{background:var(--bg);color:var(--red-ink)}
+.nav-dd.open .nav-menu{display:block}
+@media(hover:hover) and (min-width:1001px){.nav-dd:hover .nav-menu{display:block}.nav-dd:hover .dd-caret svg{transform:rotate(180deg)}}
+@media(max-width:1000px){
+  .nav-dd{flex-wrap:wrap;justify-content:space-between}
+  .nav-dd>.nav-link{flex:1}
+  .dd-caret{width:44px;height:44px}
+  .nav-menu{position:static;display:none;width:100%;min-width:0;border:0;box-shadow:none;background:var(--bg);margin:0 0 6px;border-radius:10px}
+  .nav-dd.open .nav-menu{display:block}
+  .nav-menu a{white-space:normal;padding:13px 16px;font-size:15px}
+}
+
+/* service cards: learn more */
+.card{cursor:pointer}
+.card-more{margin-top:auto;background:none;border:0;padding:6px 0 0;color:var(--red-ink);font:inherit;font-weight:800;font-size:13.5px;cursor:pointer;text-align:start;display:inline-flex;align-items:center;gap:6px}
+.card-more:hover{text-decoration:underline}
+body.lang-ar .card-more svg{transform:scaleX(-1)}
+a.quick-item{cursor:pointer}
+
+/* products: quote card */
+.pcard-cta{display:flex;flex-direction:column;justify-content:center;gap:10px;background:var(--surface);border:1.5px dashed var(--line);color:var(--ink);padding:26px}
+.pcard-cta .pc-plus{width:40px;height:40px;color:var(--red-ink)}
+.pcard-cta h3{margin:0;font-size:18px;color:var(--ink);position:relative}
+.pcard-cta span{color:var(--muted);font-size:13.5px;position:relative}
+.pcard-cta:hover{border-color:var(--red)}
+.pcard-cta .tone,.pcard-cta:before,.pcard-cta:after{display:none}
+
+/* partners fallback */
+.cl-fb{display:flex;flex-direction:column;align-items:center;gap:10px}
+.cl-fb[hidden]{display:none}
+.cl-mark{width:46px;height:46px;border-radius:13px;background:var(--icon-bg);color:var(--blue-ic);display:grid;place-items:center}
+.cl-mark svg{width:24px;height:24px}
+
+/* solution panel */
+.sol-modal{position:fixed;inset:0;z-index:120;display:flex;align-items:center;justify-content:center;padding:18px}
+.sol-modal[hidden]{display:none}
+.sol-backdrop{position:absolute;inset:0;background:rgba(3,8,22,.68);backdrop-filter:blur(3px)}
+.sol-card{position:relative;width:min(640px,100%);max-height:min(88vh,760px);overflow:auto;background:var(--surface);color:var(--ink);border-radius:20px;box-shadow:0 40px 90px rgba(0,0,0,.5);border:1px solid var(--line);outline:none;animation:solIn .25s ease}
+@keyframes solIn{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+.sol-x{position:absolute;top:12px;inset-inline-end:12px;z-index:3;width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(5,12,32,.55);color:#fff;font-size:24px;line-height:1;cursor:pointer;display:grid;place-items:center;padding:0}
+.sol-x:hover{background:rgba(5,12,32,.85)}
+.sol-head{position:relative;height:190px;border-radius:20px 20px 0 0;overflow:hidden;background:var(--sol-art,none) center/cover no-repeat,linear-gradient(150deg,#12234f,#1c4bb8)}
+.sol-head .sol-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .3s}
+.sol-head .sol-img.ok{opacity:1}
+.sol-head .sol-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,12,32,.9),rgba(5,12,32,.15) 70%)}
+.sol-headtext{position:absolute;inset-inline:26px;bottom:18px;color:#fff}
+.sol-kicker{font-size:11.5px;font-weight:800;letter-spacing:.14em;color:#ff8b85;text-transform:uppercase;margin-bottom:4px}
+body.lang-ar .sol-kicker{letter-spacing:0}
+.sol-headtext h3{margin:0;font-size:26px;line-height:1.25;font-weight:900}
+.sol-body{padding:22px 26px 6px}
+.sol-over{margin:0 0 18px;font-size:15.5px;line-height:1.75;color:var(--ink)}
+.sol-body h4{margin:0 0 10px;font-size:14px;color:var(--muted);font-weight:800;letter-spacing:.04em}
+.sol-list{list-style:none;margin:0 0 6px;padding:0;display:grid;gap:8px}
+.sol-list li{display:flex;gap:10px;align-items:flex-start;padding:11px 14px;border:1px solid var(--line);border-radius:12px;background:var(--bg);font-weight:700;font-size:14.5px}
+.sol-list li:before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--red);margin-top:8px}
+.sol-note{margin:14px 0 4px;padding:13px 15px;border-radius:12px;background:var(--icon-bg);color:var(--ink);font-size:14px;line-height:1.7}
+.sol-note b{color:var(--blue-ic)}
+.sol-foot{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:16px 26px 24px}
+.sol-foot .btn{cursor:pointer}
+.sol-more{font-weight:800;color:var(--red-ink);font-size:14px;padding:8px 4px}
+.sol-more[hidden]{display:none}
+body.sol-open{overflow:hidden}
+@media(max-width:560px){.sol-head{height:150px}.sol-headtext h3{font-size:21px}.sol-body,.sol-foot{padding-inline:18px}}
+
+/* chat: searching + rating */
+.masar-chat-rate{margin-top:12px;padding-top:10px;border-top:1px solid var(--line);text-align:center}
+.masar-chat-rate p{margin:0 0 8px;font-size:12.5px;color:var(--muted);font-weight:700}
+.masar-chat-faces{display:flex;justify-content:center;gap:14px}
+.masar-chat-face{width:40px;height:40px;padding:0;border:0;background:none;cursor:pointer;transition:transform .15s}
+.masar-chat-face:hover{transform:scale(1.15)}
+.masar-chat-face svg{width:100%;height:100%}
+.masar-chat-thanks{margin:12px 0 0;padding-top:10px;border-top:1px solid var(--line);font-size:12.5px;font-weight:700;color:var(--muted);text-align:center}
+.masar-chat-search{display:flex;align-items:center;gap:10px}
+
+/* ---- v7.0: triangle carets, product photos, project location, logo grid ---- */
+.dd-caret{width:20px}
+.dd-caret svg{width:9px;height:6px}
+.nav-dd.open .dd-caret svg{transform:rotate(180deg)}
+@media(hover:hover) and (min-width:1001px){.nav-dd:hover .dd-caret svg{transform:rotate(180deg)}}
+.pcard{min-height:230px}
+.pcard .pc-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s,transform .5s}
+.pcard .pc-img.ok{opacity:1}
+.pcard:hover .pc-img{transform:scale(1.04)}
+.pcard .pc-shade{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,12,32,.86),rgba(5,12,32,.05) 62%)}
+.pcard .row,.pcard h3{z-index:2}
+.pcard span,.pcard h3{text-shadow:0 1px 8px rgba(0,0,0,.4)}
+.pcard[id]{scroll-margin-top:110px}
+.pcard:target{outline:2px solid var(--red);outline-offset:3px}
+.pj .pj-loc{display:flex;align-items:center;gap:6px;margin-top:7px}
+.pj .pj-loc svg{width:14px;height:14px;flex:none;color:#ff8b85}
+.pj .pj-loc span{font-size:13px;font-weight:700;color:#e3ebff}
+
+.clients-grid{gap:14px}
+.cl-cell{background:#fff;border-color:#dfe6f3;min-height:150px}
+.cl-cell:hover{border-color:var(--blue-ic)}
+.cl-cell .cl-name{color:#14213d}
+.cl-cell .cl-mark{background:#e3eafa;color:#1c4bb8}
+.cl-img{max-height:92px;max-width:86%;filter:grayscale(1);opacity:.7;transition:filter .3s,opacity .3s,transform .3s}
+.cl-cell:hover .cl-img,.cl-cell:focus-within .cl-img{filter:none;opacity:1;transform:scale(1.05)}
+:root[data-theme="dark"] .cl-img,:root[data-theme="dark"] .cl-cell:hover .cl-img{filter:grayscale(1);opacity:.75}
+:root[data-theme="dark"] .cl-cell:hover .cl-img{filter:none;opacity:1}
+@media(hover:none){.cl-img,:root[data-theme="dark"] .cl-img{filter:none;opacity:1}}
+
+.pcard .row span.en{font-size:12.5px;font-weight:800;letter-spacing:.05em;color:#fff}
+.pcard-cta h3,.pcard-cta span{text-shadow:none}
+.masar-chat-msg .masar-chat-faces{margin-top:12px}
+.masar-chat-msg .masar-chat-face{width:38px;height:38px}
+
+/* ---- v7.1: highlight a service card when jumped to ---- */
+@keyframes svcHighlight{0%,100%{box-shadow:0 0 0 0 rgba(226,35,28,0)}20%{box-shadow:0 0 0 4px rgba(226,35,28,.35)}60%{box-shadow:0 0 0 4px rgba(226,35,28,.15)}}
+.svc-hl{animation:svcHighlight 1.8s ease-out 1;border-radius:16px}
+@media (prefers-reduced-motion:reduce){.svc-hl{animation:none;outline:2px solid var(--red-ink);outline-offset:2px}}
 </style>
 </head>
 <body>
+<a class="skip" href="#main"><span class="en">Skip to content</span><span class="ar" hidden>تخطَّ إلى المحتوى</span></a>
 
 <div class="topbar"><div class="container topbar-inner">
   <div class="topbar-left">
@@ -334,55 +702,110 @@ body.lang-ar .masar-chat-msg-assistant{align-self:flex-end;border-bottom-left-ra
     <a href="tel:01212520555"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 3a2 2 0 0 1-.4 2.1L8 10.3a16 16 0 0 0 6 6l1.5-1.4a2 2 0 0 1 2-.4c1 .3 2 .5 3 .6a2 2 0 0 1 1.5 2Z"/></svg><span>01212520555</span></a>
     <a href="mailto:info@track-egy.com"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg><span>info@track-egy.com</span></a>
   </div>
-  <div class="lang-switch" id="langSwitch" role="button" tabindex="0"><span data-lang="ar">AR</span> | <span data-lang="en">EN</span></div>
+  <div class="topbar-right">
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode — الوضع الداكن" title="Switch to dark mode — الوضع الداكن">
+      <svg class="ic-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      <svg class="ic-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
+    <div class="lang-switch" id="langSwitch" role="button" tabindex="0"><span data-lang="ar">AR</span> | <span data-lang="en">EN</span></div>
+  </div>
 </div></div>
 
 <header class="nav"><div class="container nav-inner">
   <a class="brand" href="#home">
     <svg width="32" height="38" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
       <path d="M14,10 L50,10 L50,32 L72,32 L72,46 L14,46 Z" fill="var(--red)"/>
-      <path d="M86,90 L50,90 L50,68 L28,68 L28,54 L86,54 Z" fill="var(--navy)"/>
+      <path d="M86,90 L50,90 L50,68 L28,68 L28,54 L86,54 Z" fill="var(--navy-ink)"/>
     </svg>
     <span class="brand-text"><span style="color:var(--red)">t</span>ech<br>track<small class="ar-always">مسار للتجارة</small></span>
   </a>
-  <nav class="links">
+  <nav class="links" id="siteLinks" aria-label="Main">
     <a class="active" href="#home"><span class="en">Home</span><small class="ar" hidden>الرئيسية</small></a>
-    <a href="#about"><span class="en">About Us</span><small class="ar" hidden>من نحن</small></a>
-    <a href="#services"><span class="en">Services</span><small class="ar" hidden>خدماتنا</small></a>
-    <a href="#products"><span class="en">Products</span><small class="ar" hidden>منتجاتنا</small></a>
-    <a href="#projects"><span class="en">Projects</span><small class="ar" hidden>مشاريعنا</small></a>
-    <a href="#contact"><span class="en">Contact</span><small class="ar" hidden>تواصل معنا</small></a>
+    <div class="nav-dd">
+      <a class="nav-link" href="#about"><span class="en">About Us</span><small class="ar" hidden>من نحن</small></a><button class="dd-caret" type="button" aria-haspopup="true" aria-expanded="false" aria-label="About menu — قائمة من نحن"><svg viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z" fill="currentColor"/></svg></button>
+      <div class="nav-menu">
+        <a href="#about"><span class="en">Overview</span><span class="ar" hidden>نظرة عامة</span></a>
+        <a href="#why"><span class="en">Why Choose Us</span><span class="ar" hidden>لماذا نحن</span></a>
+        <a href="#partners"><span class="en">Partners in Success</span><span class="ar" hidden>شركاء النجاح</span></a>
+      </div>
+    </div>
+    <div class="nav-dd">
+      <a class="nav-link" href="#services"><span class="en">Services</span><small class="ar" hidden>خدماتنا</small></a><button class="dd-caret" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Services menu — قائمة الخدمات"><svg viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z" fill="currentColor"/></svg></button>
+      <div class="nav-menu">
+        <a href="#services"><span class="en">All Services</span><span class="ar" hidden>كل الخدمات</span></a>
+        <a href="#services" data-solution="trading"><span class="en">Trading &amp; Supplies</span><span class="ar" hidden>التجارة والمستلزمات</span></a>
+        <a href="#services" data-solution="technology"><span class="en">Technology Solutions</span><span class="ar" hidden>حلول التكنولوجيا</span></a>
+        <a href="#services" data-solution="security"><span class="en">Security Solutions</span><span class="ar" hidden>حلول الأمن والمراقبة</span></a>
+        <a href="#services" data-solution="networking"><span class="en">Networking Solutions</span><span class="ar" hidden>حلول الشبكات</span></a>
+        <a href="#services" data-solution="support"><span class="en">Technical Support</span><span class="ar" hidden>الدعم الفني</span></a>
+        <a href="#services" data-solution="projects"><span class="en">Project Solutions</span><span class="ar" hidden>حلول المشاريع</span></a>
+        <a href="#services" data-solution="integrated"><span class="en">Integrated Security Systems</span><span class="ar" hidden>أنظمة الأمن المتكاملة</span></a>
+        <a href="#services" data-solution="fiber"><span class="en">Fiber Optic Solutions</span><span class="ar" hidden>حلول الألياف الضوئية</span></a>
+      </div>
+    </div>
+    <div class="nav-dd">
+      <a class="nav-link" href="#products"><span class="en">Products</span><small class="ar" hidden>منتجاتنا</small></a><button class="dd-caret" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Products menu — قائمة المنتجات"><svg viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z" fill="currentColor"/></svg></button>
+      <div class="nav-menu">
+        <a href="#products"><span class="en">All Products</span><span class="ar" hidden>كل المنتجات</span></a>
+        <a href="#prod-electronics-devices"><span class="en">Electronics &amp; Devices</span><span class="ar" hidden>أجهزة وإلكترونيات</span></a>
+        <a href="#prod-security-systems"><span class="en">Security Systems</span><span class="ar" hidden>أنظمة الأمن</span></a>
+        <a href="#prod-networking-equipment"><span class="en">Networking Equipment</span><span class="ar" hidden>معدات الشبكات</span></a>
+        <a href="#prod-electrical-supplies"><span class="en">Electrical Supplies</span><span class="ar" hidden>المستلزمات الكهربائية</span></a>
+        <a href="#prod-it-solutions"><span class="en">IT Solutions</span><span class="ar" hidden>حلول تقنية المعلومات</span></a>
+        <a href="#prod-fiber-splicing-equipment"><span class="en">Our Fiber Splicing Equipment</span><span class="ar" hidden>معدات اللحام الخاصة بنا</span></a>
+      </div>
+    </div>
+    <div class="nav-dd">
+      <a class="nav-link" href="#projects"><span class="en">Projects</span><small class="ar" hidden>مشاريعنا</small></a><button class="dd-caret" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Projects menu — قائمة المشاريع"><svg viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z" fill="currentColor"/></svg></button>
+      <div class="nav-menu">
+        <a href="#projects" data-filter="all"><span class="en">All Projects</span><span class="ar" hidden>كل المشاريع</span></a>
+        <a href="#projects" data-filter="ent"><span class="en">Entertainment &amp; Events</span><span class="ar" hidden>ترفيه وفعاليات</span></a>
+        <a href="#projects" data-filter="sec"><span class="en">Security &amp; IT</span><span class="ar" hidden>أمن وتقنية</span></a>
+        <a href="#projects" data-filter="fiber"><span class="en">Fiber Optic</span><span class="ar" hidden>ألياف ضوئية</span></a>
+      </div>
+    </div>
+    <div class="nav-dd">
+      <a class="nav-link" href="#contact"><span class="en">Contact</span><small class="ar" hidden>تواصل معنا</small></a><button class="dd-caret" type="button" aria-haspopup="true" aria-expanded="false" aria-label="Contact menu — قائمة التواصل"><svg viewBox="0 0 10 6" aria-hidden="true"><path d="M0 0h10L5 6z" fill="currentColor"/></svg></button>
+      <div class="nav-menu">
+        <a href="#contact"><span class="en">Send a Message</span><span class="ar" hidden>أرسل رسالة</span></a>
+        <a href="https://wa.me/201212520555" target="_blank" rel="noopener"><span class="en">Chat on WhatsApp</span><span class="ar" hidden>تواصل عبر واتساب</span></a>
+        <a href="tel:01212520555"><span class="en">Call</span><span class="ar" hidden>اتصل</span> <bdi>01212520555</bdi></a>
+        <a href="tel:0502295525"><span class="en">Call</span><span class="ar" hidden>اتصل</span> <bdi>0502295525</bdi></a>
+        <a href="mailto:info@track-egy.com"><span class="en">Email Us</span><span class="ar" hidden>راسلنا بالإيميل</span></a>
+      </div>
+    </div>
+    <a class="links-cta" href="#contact"><span class="en">Get In Touch</span><span class="ar" hidden>تواصل معنا</span></a>
   </nav>
   <div class="nav-right">
     <span class="icon-btn" id="searchBtn" role="button" tabindex="0" aria-label="Search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
-    <a class="nav-cta" href="#contact">Get In Touch <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Menu — القائمة" aria-expanded="false" aria-controls="siteLinks"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    <a class="nav-cta" href="#contact"><span class="en">Get In Touch</span><span class="ar" hidden>تواصل معنا</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
   </div>
 </div></header>
 
 <div class="search-overlay" id="searchOverlay">
   <div class="search-box">
-    <div class="search-box-head">
-      <input type="text" id="searchInput" placeholder="Search the site… ابحث في الموقع" autocomplete="off">
-      <button class="search-close" id="searchClose" aria-label="Close">&times;</button>
-    </div>
+    <button class="search-close" id="searchClose" aria-label="Close">&times;</button>
+    <input type="text" id="searchInput" placeholder="Search the site… ابحث في الموقع" autocomplete="off">
     <div class="search-results" id="searchResults"></div>
   </div>
 </div>
 
-<main>
+<main id="main">
 <section class="hero" id="home">
   <div class="geo outline-square" style="width:120px;height:120px;left:8%;bottom:-30px;transform:rotate(20deg);color:#fff"></div>
   <div class="geo dot-grid" style="width:160px;height:160px;left:42%;top:20px;color:#fff"></div>
   <div class="container hero-grid">
   <div>
-    <div class="kicker light">MASAR TRADING</div>
+    <div class="kicker light">TRACK TRADE</div>
     <h1 class="ar" hidden>مسار للتجارة</h1>
-    <h1 class="en">Masar Trading</h1>
-    <p class="tag">Your Trusted Partner for Smart Trading Solutions</p>
-    <p class="desc">We provide high-quality products and innovative solutions to support your business growth and success.</p>
+    <h1 class="en">Track Trade</h1>
+    <p class="tag"><span class="en">Your Trusted Partner for Smart Trading Solutions</span><span class="ar" hidden>شريكك الموثوق في حلول التجارة الذكية</span></p>
+    <div class="motto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5Z"/></svg><span class="en">Your Safety Is Our Path</span><span class="ar" hidden>أمانك مسارنا</span></div>
+    <p class="desc"><span class="en">We provide high-quality products and innovative solutions to support your business growth and success.</span><span class="ar" hidden>نقدّم منتجات عالية الجودة وحلولاً مبتكرة لدعم نمو أعمالك ونجاحها.</span></p>
     <div class="buttons">
-      <a class="btn btn-primary" href="#services">Explore Our Services <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <a class="btn btn-outline" href="#contact">Contact Us</a>
+      <a class="btn btn-primary" href="#services"><span class="en">Explore Our Services</span><span class="ar" hidden>استكشف خدماتنا</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="btn btn-outline" href="#contact"><span class="en">Contact Us</span><span class="ar" hidden>تواصل معنا</span></a>
     </div>
   </div>
   <div class="hero-photo">
@@ -396,16 +819,56 @@ body.lang-ar .masar-chat-msg-assistant{align-self:flex-end;border-bottom-left-ra
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 1 5.4-5.4L21 6l-3-3Z"/></svg>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 12h8M12 8v8"/></svg>
     </div>
-    <div class="hp-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5Z"/></svg> Trusted &amp; Certified</div>
-    <div class="hp-stats">
-      <div class="s"><b>08</b><span>Service Categories</span></div>
-      <div class="s"><b>06</b><span>Product Lines</span></div>
-      <div class="s"><b>EG/SA</b><span>Egypt &amp; Saudi Arabia</span></div>
-      <div class="s"><b>24/7</b><span>Technical Support</span></div>
+    <div class="hp-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5Z"/></svg> <span class="en">Trusted &amp; Certified</span><span class="ar" hidden>موثوق ومعتمد</span></div>
+    <div class="hp-slides" id="hpSlides" role="region" aria-roledescription="carousel" aria-label="Highlights — أبرز خدماتنا">
+      <div class="hp-slide on" data-i="0" style="--hp-art:url(assets/projects/art/cctv-data-center.svg)">
+        <svg class="hp-art" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5Z"/><path d="m9 12 2 2 4-4"/></svg>
+        <img class="hp-img" src="assets/hero/security.jpg" alt="" loading="eager" onload="this.classList.add('ok')" onerror="this.remove()">
+        <div class="hp-shade"></div>
+        <div class="hp-copy">
+          <h3><span class="en">Security &amp; Surveillance</span><span class="ar" hidden>الأمن والمراقبة</span></h3>
+          <p><span class="en">CCTV, access control and monitoring that keep your premises safe.</span><span class="ar" hidden>كاميرات مراقبة وتحكم في الدخول ومتابعة تحافظ على أمان منشآتك.</span></p>
+          <a class="hp-cta" href="#services" data-solution="security"><span class="en">More Solutions</span><span class="ar" hidden>المزيد من الحلول</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <div class="hp-slide" data-i="1" style="--hp-art:url(assets/projects/art/fiber-cityscape.svg)" aria-hidden="true">
+        <svg class="hp-art" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M5 8v3l7 4M19 8v3l-7 4"/></svg>
+        <img class="hp-img" src="assets/hero/networking-fiber.jpg" alt="" loading="lazy" onload="this.classList.add('ok')" onerror="this.remove()">
+        <div class="hp-shade"></div>
+        <div class="hp-copy">
+          <h3><span class="en">Networking &amp; Fiber Optic</span><span class="ar" hidden>الشبكات والألياف الضوئية</span></h3>
+          <p><span class="en">Structured cabling, fusion splicing and reliable network infrastructure.</span><span class="ar" hidden>تمديدات منظمة ولحام ألياف وبنية شبكات موثوقة.</span></p>
+          <a class="hp-cta" href="#services" data-solution="fiber"><span class="en">More Solutions</span><span class="ar" hidden>المزيد من الحلول</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <div class="hp-slide" data-i="2" style="--hp-art:url(assets/projects/art/control-room.svg)" aria-hidden="true">
+        <svg class="hp-art" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        <img class="hp-img" src="assets/hero/control-rooms.jpg" alt="" loading="lazy" onload="this.classList.add('ok')" onerror="this.remove()">
+        <div class="hp-shade"></div>
+        <div class="hp-copy">
+          <h3><span class="en">Control Rooms &amp; Data Centers</span><span class="ar" hidden>غرف التحكم ومراكز البيانات</span></h3>
+          <p><span class="en">From control room setup to CCTV and data center projects.</span><span class="ar" hidden>من تأسيس غرف التحكم إلى مشاريع كاميرات المراقبة ومراكز البيانات.</span></p>
+          <a class="hp-cta" href="#projects" data-solution="control"><span class="en">More Solutions</span><span class="ar" hidden>المزيد من الحلول</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <div class="hp-slide" data-i="3" style="--hp-art:url(assets/projects/art/trading-supplies.svg)" aria-hidden="true">
+        <svg class="hp-art" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11h11L21 7H6"/><circle cx="9" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/></svg>
+        <img class="hp-img" src="assets/hero/trading-supplies.jpg" alt="" loading="lazy" onload="this.classList.add('ok')" onerror="this.remove()">
+        <div class="hp-shade"></div>
+        <div class="hp-copy">
+          <h3><span class="en">Trading &amp; Supplies</span><span class="ar" hidden>التجارة والتوريدات</span></h3>
+          <p><span class="en">Electronics, security, networking and electrical products for businesses across sectors.</span><span class="ar" hidden>أجهزة وإلكترونيات وأنظمة أمن ومعدات شبكات ومستلزمات كهربائية للشركات في مختلف القطاعات.</span></p>
+          <a class="hp-cta" href="#products" data-solution="trading"><span class="en">More Solutions</span><span class="ar" hidden>المزيد من الحلول</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
     </div>
-    <div class="overlay">
-      <div class="ar" hidden>شريكك في حلول التجارة الذكية</div>
-      <div class="en">Your Partner in Smart Trading Solutions</div>
+    <div class="hp-bar">
+      <div class="hp-dots"><button type="button" class="hp-dot on" data-go="0" aria-label="Slide 1"></button><button type="button" class="hp-dot" data-go="1" aria-label="Slide 2"></button><button type="button" class="hp-dot" data-go="2" aria-label="Slide 3"></button><button type="button" class="hp-dot" data-go="3" aria-label="Slide 4"></button></div>
+      <div class="hp-ctrl">
+        <button type="button" class="hp-btn" id="hpPrev" aria-label="Previous — السابق"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 6-6 6 6 6"/></svg></button>
+        <button type="button" class="hp-btn" id="hpPause" aria-label="Pause — إيقاف مؤقت" aria-pressed="false"><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7Z"/></svg></button>
+        <button type="button" class="hp-btn" id="hpNext" aria-label="Next — التالي"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg></button>
+      </div>
     </div>
   </div>
 </div></section>
@@ -418,21 +881,35 @@ body.lang-ar .masar-chat-msg-assistant{align-self:flex-end;border-bottom-left-ra
 </div></section>
 
 <section class="quickbar"><div class="container"><div class="quick-grid">
-  <div class="quick-item"><div class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h2l2.6 13.4a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L22 7H6"/><circle cx="9" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg></div><h4 class="en">Trading &amp; Supplies</h4><span class="ar" hidden>التجارة والمستلزمات</span><p>Sourcing and supplying quality products across sectors, reliably and on time.</p><div class="bar"></div></div>
-  <div class="quick-item"><div class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.9 2.9l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.9-2.9l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.9-2.9l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.6V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.9 2.9l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.6 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.6 1Z"/></svg></div><h4 class="en">Technology Solutions</h4><span class="ar" hidden>حلول التكنولوجيا</span><p>Modern IT and electronics solutions tailored to your operations.</p><div class="bar"></div></div>
-  <div class="quick-item"><div class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5Z"/></svg></div><h4 class="en">Security Solutions</h4><span class="ar" hidden>حلول الأمن والمراقبة</span><p>Surveillance and protection systems that keep your premises safe.</p><div class="bar"></div></div>
-  <div class="quick-item"><div class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M5 8v3l7 4M19 8v3l-7 4"/></svg></div><h4 class="en">Networking Solutions</h4><span class="ar" hidden>حلول الشبكات</span><p>Reliable network infrastructure design, supply and installation.</p><div class="bar"></div></div>
-  <div class="quick-item"><div class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 1 5.4-5.4L21 6l-3-3Z"/></svg></div><h4 class="en">Technical Support</h4><span class="ar" hidden>الدعم الفني</span><p>Responsive maintenance that keeps your systems running smoothly.</p><div class="bar"></div></div>
-  <div class="quick-item"><div class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></div><h4 class="en">Project Solutions</h4><span class="ar" hidden>حلول المشاريع</span><p>End-to-end project supply and implementation, delivered with confidence.</p><div class="bar"></div></div>
+  <a class="quick-item" href="#services" data-solution="trading"><div class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h2l2.6 13.4a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L22 7H6"/><circle cx="9" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg></div><h4 class="en">Trading &amp; Supplies</h4><span class="ar" hidden>التجارة والمستلزمات</span><div class="bar"></div></a>
+  <a class="quick-item" href="#services" data-solution="technology"><div class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1a2 2 0 1 1-2.9 2.9l-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.6V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1-1.6 1.7 1.7 0 0 0-1.9.3l-.1.1a2 2 0 1 1-2.9-2.9l.1-.1a1.7 1.7 0 0 0 .3-1.9 1.7 1.7 0 0 0-1.6-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.6-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1a2 2 0 1 1 2.9-2.9l.1.1a1.7 1.7 0 0 0 1.9.3H9a1.7 1.7 0 0 0 1-1.6V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.6 1.7 1.7 0 0 0 1.9-.3l.1-.1a2 2 0 1 1 2.9 2.9l-.1.1a1.7 1.7 0 0 0-.3 1.9V9a1.7 1.7 0 0 0 1.6 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.6 1Z"/></svg></div><h4 class="en">Technology Solutions</h4><span class="ar" hidden>حلول التكنولوجيا</span><div class="bar"></div></a>
+  <a class="quick-item" href="#services" data-solution="security"><div class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5Z"/></svg></div><h4 class="en">Security Solutions</h4><span class="ar" hidden>حلول الأمن والمراقبة</span><div class="bar"></div></a>
+  <a class="quick-item" href="#services" data-solution="networking"><div class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M5 8v3l7 4M19 8v3l-7 4"/></svg></div><h4 class="en">Networking Solutions</h4><span class="ar" hidden>حلول الشبكات</span><div class="bar"></div></a>
+  <a class="quick-item" href="#services" data-solution="support"><div class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 1 5.4-5.4L21 6l-3-3Z"/></svg></div><h4 class="en">Technical Support</h4><span class="ar" hidden>الدعم الفني</span><div class="bar"></div></a>
+  <a class="quick-item" href="#services" data-solution="projects"><div class="qi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></div><h4 class="en">Project Solutions</h4><span class="ar" hidden>حلول المشاريع</span><div class="bar"></div></a>
 </div></div></section>
 
 <section class="about" id="about" style="position:relative;overflow:hidden">
-  <div class="geo outline-circle" style="width:200px;height:200px;right:-70px;top:-70px;color:var(--navy)"></div>
+  <div class="blk r" style="width:230px;height:230px;left:-80px;bottom:-70px;transform:scaleY(-1)"></div>
+  <div class="blk n" style="width:260px;height:260px;right:-80px;bottom:-70px"></div>
+  <svg class="blk o" viewBox="0 0 100 100" preserveAspectRatio="none" style="width:120px;height:120px;left:56%;bottom:20px;transform:rotate(180deg)" aria-hidden="true"><path d="M2,2 H98 V60 H54 V98 H2 Z" vector-effect="non-scaling-stroke"/></svg>
+  <div class="glow b" style="width:320px;height:320px;left:20%;top:-140px"></div>
+  <div class="glow r" style="width:240px;height:240px;right:6%;bottom:-120px"></div>
+  <div class="geo outline-circle" style="width:200px;height:200px;right:-70px;top:-70px;color:var(--navy-ink)"></div>
   <div class="container" style="position:relative;z-index:1">
   <div class="kicker"><span class="en">ABOUT US </span><span class="ar" hidden>من نحن</span></div>
   <div class="about-grid" style="margin-top:14px">
-    <div class="about-photo">
-      <span class="brand-text">tech<br>track</span>
+    <div class="about-visual">
+      <div class="about-photo has-img">
+        <img class="ap-img" src="assets/company-sign.jpg" alt="Track Trade — مسار للتجارة (tech track)" width="1200" height="844" loading="lazy">
+      </div>
+      <a class="profile-dl" href="assets/docs/tech-track-company-profile.pdf" target="_blank" rel="noopener">
+        <span class="profile-dl-ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></span>
+        <span class="profile-dl-txt">
+          <b><span class="en">Download Company Profile</span><span class="ar" hidden>تحميل ملف الشركة</span></b>
+          <small><span class="en">PDF · Track Trade for Trading</span><span class="ar" hidden>PDF · شركة مسار للتجارة</span></small>
+        </span>
+      </a>
       <div class="ap-grid">
         <div class="ap-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m9 12 2 2 4-4"/><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5Z"/></svg><span><span class="en">Quality Focus</span><span class="ar" hidden>تركيز على الجودة</span></span></div>
         <div class="ap-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><span><span class="en">Fast Delivery</span><span class="ar" hidden>توصيل سريع</span></span></div>
@@ -441,59 +918,91 @@ body.lang-ar .masar-chat-msg-assistant{align-self:flex-end;border-bottom-left-ra
       </div>
     </div>
     <div class="about-body">
-      <h2><span class="en">Masar Trading </span><span class="ar" hidden>| مسار للتجارة</span></h2>
-      <p class="en">Founded in 2008, Masar Trading has grown into a bilingual, cross-border technology and security integrator with operations in Egypt and a branch in Saudi Arabia. We design and install complete, connected systems — not just supply parts — for clients across various sectors.</p>
+      <h2><span class="en">Track Trade </span><span class="ar" hidden>| مسار للتجارة</span></h2>
+      <p class="en">Founded in 2008, Track Trade has grown into a bilingual, cross-border technology and security integrator with operations in Egypt and a branch in Saudi Arabia. We design and install complete, connected systems — not just supply parts — for clients across various sectors.</p>
       <p class="ar" hidden>تأسست مسار للتجارة عام 2008، ونمت لتصبح شركة متكاملة في حلول التكنولوجيا والأنظمة الأمنية بعمليات في مصر وفرع في المملكة العربية السعودية. نصمم ونركّب أنظمة متكاملة ومترابطة — وليس مجرد توريد قطع — لعملائنا في مختلف القطاعات.</p>
-      <a class="btn btn-outline dark" href="#contact" style="margin-top:8px">Learn More</a>
+      <div class="about-partners">
+        <h3><span class="en">We are partners in success with</span><span class="ar" hidden>نحن شركاء نجاح مع</span></h3>
+        <div class="chips">
+        <span class="chip"><span class="en">General Entertainment Authority</span><span class="ar" hidden>الهيئة العامة للترفيه</span></span>
+        <span class="chip"><span class="en">solutions by stc</span><span class="ar" hidden>الاتصالات السعودية — solutions by stc</span></span>
+        <span class="chip"><span class="en">Ministry of Environment, Water and Agriculture</span><span class="ar" hidden>وزارة البيئة والمياه والزراعة</span></span>
+        <span class="chip"><span class="en">Ministry of Health</span><span class="ar" hidden>وزارة الصحة</span></span>
+        <span class="chip"><span class="en">Ministry of Justice</span><span class="ar" hidden>وزارة العدل</span></span>
+        <span class="chip"><span class="en">Ministry of Media</span><span class="ar" hidden>وزارة الإعلام</span></span>
+        <span class="chip"><span class="en">Saudi Aramco</span><span class="ar" hidden>أرامكو السعودية</span></span>
+        <span class="chip"><span class="en">Sela</span><span class="ar" hidden>صلة</span></span>
+        </div>
+      </div>
+      <a class="btn btn-outline dark" href="#contact" style="margin-top:22px"><span class="en">Learn More</span><span class="ar" hidden>اعرف المزيد</span></a>
     </div>
     <div class="quote-card">
       <div class="mark">&ldquo;</div>
-      <h3>Your Success is Our Business</h3>
-      <div class="who"><b>Mahmoud Shabana</b>CEO</div>
+      <h3><span class="en">Your Success is Our Business</span><span class="ar" hidden>نجاحك هو عملنا</span></h3>
+      <div class="who"><b>Mahmoud Shabana</b><span class="en">CEO</span><span class="ar" hidden>الرئيس التنفيذي</span></div>
     </div>
   </div>
 </div></section>
 
-<section id="services"><div class="container">
+<section id="services">
+  <div class="blk r" style="width:260px;height:260px;left:-80px;top:70px"></div>
+  <div class="blk n" style="width:300px;height:300px;right:-100px;bottom:-80px"></div>
+  <svg class="blk o red" viewBox="0 0 100 100" preserveAspectRatio="none" style="width:130px;height:130px;right:22%;top:14px" aria-hidden="true"><path d="M2,2 H98 V60 H54 V98 H2 Z" vector-effect="non-scaling-stroke"/></svg>
+  <svg class="blk o" viewBox="0 0 100 100" preserveAspectRatio="none" style="width:90px;height:90px;left:8%;bottom:34px;transform:scaleX(-1)" aria-hidden="true"><path d="M2,2 H98 V60 H54 V98 H2 Z" vector-effect="non-scaling-stroke"/></svg>
+  <div class="glow b" style="width:360px;height:360px;left:30%;top:-160px"></div>
+  <div class="glow r" style="width:260px;height:260px;right:18%;bottom:-120px"></div>
+  <div class="geo outline-circle" style="width:240px;height:240px;right:-90px;top:-70px;color:var(--shape)"></div>
+  <div class="geo dot-grid" style="width:150px;height:150px;left:1%;bottom:24px;color:var(--shape)"></div>
+  <div class="geo outline-square" style="width:76px;height:76px;right:7%;bottom:46px;transform:rotate(22deg);color:var(--red)"></div>
+<div class="container">
   <div class="section-head">
-    <div><div class="kicker"><span class="en">OUR SERVICES </span><span class="ar" hidden>خدماتنا</span></div><h2>Comprehensive Solutions for Your Business</h2></div>
-    <a class="view-all" href="#">View All Services →</a>
+    <div><div class="kicker"><span class="en">OUR SERVICES </span><span class="ar" hidden>خدماتنا</span></div><h2><span class="en">Comprehensive Solutions for Your Business</span><span class="ar" hidden>حلول شاملة لأعمالك</span></h2></div>
+    <a class="view-all" href="#contact"><span class="en">Request a Quote →</span><span class="ar" hidden>اطلب عرض سعر ←</span></a>
   </div>
   <div class="cards">
-    <article class="card"><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h2l2.6 13.4a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L22 7H6"/><circle cx="9" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg></div><h3 class="en">Trading &amp; Supplies</h3><span class="ar" hidden>التجارة والمستلزمات</span><div class="bar"></div></article>
-    <article class="card"><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9M4.6 9a1.7 1.7 0 0 0-.3-1.9"/></svg></div><h3 class="en">Technology Solutions</h3><span class="ar" hidden>حلول التكنولوجيا</span><div class="bar"></div></article>
-    <article class="card"><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5Z"/></svg></div><h3 class="en">Security Solutions</h3><span class="ar" hidden>حلول الأمن والمراقبة</span><div class="bar"></div></article>
-    <article class="card"><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M5 8v3l7 4M19 8v3l-7 4"/></svg></div><h3 class="en">Networking Solutions</h3><span class="ar" hidden>حلول الشبكات</span><div class="bar"></div></article>
-    <article class="card"><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 1 5.4-5.4L21 6l-3-3Z"/></svg></div><h3 class="en">Technical Support</h3><span class="ar" hidden>الدعم الفني</span><div class="bar"></div></article>
-    <article class="card"><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></div><h3 class="en">Project Solutions</h3><span class="ar" hidden>حلول المشاريع</span><div class="bar"></div></article>
-    <article class="card"><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1.5"/></svg></div><h3 class="en">Integrated Security Systems</h3><span class="ar" hidden>أنظمة الأمن المتكاملة</span><p class="en" style="font-size:13px;color:var(--muted);margin:8px 0 0">End-to-end design and installation — network switches, access control (ACC) doors, control rooms and full CCTV coverage as one connected system.</p><p class="ar" hidden style="font-size:13px;color:var(--muted);margin:8px 0 0">تصميم وتركيب متكامل — سويتشات، أبواب تحكم في الدخول (ACC)، غرف تحكم (Control Room)، وتغطية كاميرات مراقبة (CCTV) كاملة كمنظومة واحدة مترابطة.</p><div class="bar"></div></article>
-    <article class="card"><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L3 18v3h3l6.3-6.3"/><circle cx="18" cy="6" r="3"/></svg></div><h3 class="en">Fiber Optic Solutions</h3><span class="ar" hidden>حلول الألياف الضوئية</span><p class="en" style="font-size:13px;color:var(--muted);margin:8px 0 0">We fix messy, unplanned fiber cabling and internal extensions in factories and homes with structured cabling, our own fusion-splicing equipment and accessories — priced below the market average.</p><p class="ar" hidden style="font-size:13px;color:var(--muted);margin:8px 0 0">نحل مشكلة عشوائية تمديدات الألياف الضوئية والامتدادات الداخلية في المصانع والمنازل بتمديدات منظمة، ومعدات لحام (فيوجن) وإكسسواراتها الخاصة بنا، وبأسعار أقل من متوسط السوق.</p><div class="bar"></div></article>
+    <article class="card" id="svc-trading" data-solution="trading"><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h2l2.6 13.4a2 2 0 0 0 2 1.6h8.8a2 2 0 0 0 2-1.6L22 7H6"/><circle cx="9" cy="21" r="1"/><circle cx="18" cy="21" r="1"/></svg></div><h3 class="en">Trading &amp; Supplies</h3><span class="ar" hidden>التجارة والمستلزمات</span><p class="desc en">Sourcing and supplying electronics, security, networking and electrical products for businesses across sectors — reliably and on time.</p><p class="desc ar" hidden>توريد الأجهزة والإلكترونيات وأنظمة الأمن ومعدات الشبكات والمستلزمات الكهربائية للشركات في مختلف القطاعات، بموثوقية وفي الموعد.</p><button type="button" class="card-more" data-solution="trading"><span class="en">Learn more</span><span class="ar" hidden>اعرف المزيد</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></article>
+    <article class="card" id="svc-tech" data-solution="technology"><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9M4.6 9a1.7 1.7 0 0 0-.3-1.9"/></svg></div><h3 class="en">Technology Solutions</h3><span class="ar" hidden>حلول التكنولوجيا</span><p class="desc en">Modern IT and electronics solutions tailored to how your business operates, from choosing the right equipment to putting it to work.</p><p class="desc ar" hidden>حلول تقنية وإلكترونية حديثة مصممة حسب طريقة عمل شركتك، من اختيار المعدات المناسبة حتى تشغيلها.</p><button type="button" class="card-more" data-solution="technology"><span class="en">Learn more</span><span class="ar" hidden>اعرف المزيد</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></article>
+    <article class="card" id="svc-security" data-solution="security"><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5Z"/></svg></div><h3 class="en">Security Solutions</h3><span class="ar" hidden>حلول الأمن والمراقبة</span><p class="desc en">CCTV, surveillance and protection systems that keep your premises safe and give you a clear view of what is happening.</p><p class="desc ar" hidden>كاميرات مراقبة وأنظمة حماية تحافظ على أمان منشآتك وتمنحك رؤية واضحة لكل ما يحدث.</p><button type="button" class="card-more" data-solution="security"><span class="en">Learn more</span><span class="ar" hidden>اعرف المزيد</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></article>
+    <article class="card" id="svc-network" data-solution="networking"><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="M5 8v3l7 4M19 8v3l-7 4"/></svg></div><h3 class="en">Networking Solutions</h3><span class="ar" hidden>حلول الشبكات</span><p class="desc en">Design, supply and installation of reliable network infrastructure, so your teams and systems stay connected.</p><p class="desc ar" hidden>تصميم وتوريد وتركيب بنية شبكات موثوقة تُبقي فرقك وأنظمتك على اتصال دائم.</p><button type="button" class="card-more" data-solution="networking"><span class="en">Learn more</span><span class="ar" hidden>اعرف المزيد</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></article>
+    <article class="card" id="svc-support" data-solution="support"><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 1 5.4-5.4L21 6l-3-3Z"/></svg></div><h3 class="en">Technical Support</h3><span class="ar" hidden>الدعم الفني</span><p class="desc en">Responsive maintenance and technical support that keeps your systems running smoothly.</p><p class="desc ar" hidden>صيانة ودعم فني سريع الاستجابة يحافظ على عمل أنظمتك بسلاسة.</p><button type="button" class="card-more" data-solution="support"><span class="en">Learn more</span><span class="ar" hidden>اعرف المزيد</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></article>
+    <article class="card" id="svc-project" data-solution="projects"><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></div><h3 class="en">Project Solutions</h3><span class="ar" hidden>حلول المشاريع</span><p class="desc en">End-to-end project supply and implementation, delivered with confidence from planning to completion.</p><p class="desc ar" hidden>توريد وتنفيذ مشاريع متكامل من التخطيط حتى التسليم، بثقة.</p><button type="button" class="card-more" data-solution="projects"><span class="en">Learn more</span><span class="ar" hidden>اعرف المزيد</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></article>
+    <article class="card" id="svc-integrated-security" data-solution="integrated"><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1.5"/></svg></div><h3 class="en">Integrated Security Systems</h3><span class="ar" hidden>أنظمة الأمن المتكاملة</span><p class="desc en">End-to-end design and installation — network switches, access control (ACC) doors, control rooms and full CCTV coverage as one connected system.</p><p class="desc ar" hidden>تصميم وتركيب متكامل — سويتشات، أبواب تحكم في الدخول (ACC)، غرف تحكم (Control Room)، وتغطية كاميرات مراقبة (CCTV) كاملة كمنظومة واحدة مترابطة.</p><button type="button" class="card-more" data-solution="integrated"><span class="en">Learn more</span><span class="ar" hidden>اعرف المزيد</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></article>
+    <article class="card" id="svc-fiber" data-solution="fiber"><div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L3 18v3h3l6.3-6.3"/><circle cx="18" cy="6" r="3"/></svg></div><h3 class="en">Fiber Optic Solutions</h3><span class="ar" hidden>حلول الألياف الضوئية</span><p class="desc en">We fix messy, unplanned fiber cabling and internal extensions in factories and homes with structured cabling, using our own fusion-splicing equipment — priced below the market average.</p><p class="desc ar" hidden>نحل مشكلة عشوائية تمديدات الألياف الضوئية والامتدادات الداخلية في المصانع والمنازل بتمديدات منظمة، باستخدام معدات اللحام (فيوجن) الخاصة بنا، وبأسعار أقل من متوسط السوق.</p><button type="button" class="card-more" data-solution="fiber"><span class="en">Learn more</span><span class="ar" hidden>اعرف المزيد</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></article>
   </div>
 </div></section>
 
-<section class="products" id="products"><div class="container">
+<section class="products" id="products">
+  <div class="blk n" style="width:240px;height:240px;left:-70px;top:-50px;transform:scaleX(-1)"></div>
+  <div class="blk r" style="width:280px;height:280px;right:-90px;bottom:-90px;transform:rotate(180deg)"></div>
+  <svg class="blk o" viewBox="0 0 100 100" preserveAspectRatio="none" style="width:120px;height:120px;left:9%;bottom:30px" aria-hidden="true"><path d="M2,2 H98 V60 H54 V98 H2 Z" vector-effect="non-scaling-stroke"/></svg>
+  <div class="glow b" style="width:340px;height:340px;right:22%;top:-150px"></div>
+  <div class="glow r" style="width:240px;height:240px;left:24%;bottom:-130px"></div>
+  <div class="geo diag" style="width:170px;height:170px;right:3%;top:18px;color:var(--shape)"></div>
+  <div class="geo outline-circle" style="width:200px;height:200px;left:-70px;bottom:-70px;color:var(--shape)"></div>
+  <div class="geo outline-square" style="width:60px;height:60px;left:6%;top:44px;transform:rotate(18deg);color:var(--red)"></div>
+<div class="container">
   <div class="section-head">
-    <div><div class="kicker"><span class="en">FEATURED PRODUCTS </span><span class="ar" hidden>منتجات مميزة</span></div><h2>Quality Products from Trusted Brands</h2></div>
-    <a class="view-all" href="#">View All Products →</a>
+    <div><div class="kicker"><span class="en">OUR CAPABILITIES </span><span class="ar" hidden>إمكانياتنا</span></div><h2><span class="en">Products We Supply &amp; Equipment We Work With</span><span class="ar" hidden>منتجات نوردها ومعدات نعمل بها</span></h2><p style="margin-top:8px"><span class="en">We supply trusted electronics, security, networking and electrical products — and we maintain our own professional equipment to design, install and support every project ourselves.</span><span class="ar" hidden>نورّد أجهزة إلكترونية وأنظمة أمن ومعدات شبكات ومستلزمات كهربائية موثوقة، ونمتلك معداتنا الاحترافية الخاصة التي نصمم وننفذ وندعم بها مشاريعنا بأنفسنا.</span></p></div>
+    <a class="view-all" href="#contact"><span class="en">Request a Quote →</span><span class="ar" hidden>اطلب عرض سعر ←</span></a>
   </div>
   <div class="pcards">
-    <article class="pcard"><div class="tone" style="background:linear-gradient(160deg,#0d1c40,#1c4bb8)"></div><svg class="big-icon" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg><div class="row"><span class="dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></span><span class="en">ELECTRONICS &amp; DEVICES</span></div><h3 class="ar" hidden>أجهزة والكترونيات</h3></article>
-    <article class="pcard"><div class="tone" style="background:linear-gradient(160deg,#1b1f2b,#3a4152)"></div><svg class="big-icon" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5Z"/></svg><div class="row"><span class="dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5Z"/></svg></span><span class="en">SECURITY SYSTEMS</span></div><h3 class="ar" hidden>أنظمة الأمن</h3></article>
-    <article class="pcard"><div class="tone" style="background:linear-gradient(160deg,#12203f,#2c4a86)"></div><svg class="big-icon" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><rect x="3" y="7" width="18" height="10" rx="2"/><path d="M7 21h10M12 17v4"/></svg><div class="row"><span class="dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="7" width="18" height="10" rx="2"/><path d="M7 21h10M12 17v4"/></svg></span><span class="en">NETWORKING EQUIPMENT</span></div><h3 class="ar" hidden>معدات الشبكات</h3></article>
-    <article class="pcard"><div class="tone" style="background:linear-gradient(160deg,#5a3a12,#caa23a)"></div><svg class="big-icon" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg><div class="row"><span class="dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg></span><span class="en">ELECTRICAL SUPPLIES</span></div><h3 class="ar" hidden>المستلزمات الكهربائية</h3></article>
-    <article class="pcard"><div class="tone" style="background:linear-gradient(160deg,#0b1c40,#0d3a63)"></div><svg class="big-icon" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><rect x="4" y="3" width="6" height="18" rx="1"/><rect x="14" y="3" width="6" height="18" rx="1"/></svg><div class="row"><span class="dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="4" y="3" width="6" height="18" rx="1"/><rect x="14" y="3" width="6" height="18" rx="1"/></svg></span><span class="en">IT SOLUTIONS</span></div><h3 class="ar" hidden>حلول تقنية المعلومات</h3></article>
-    <article class="pcard"><div class="tone" style="background:linear-gradient(160deg,#3a0d1c,#8a1f2b)"></div><svg class="big-icon" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L3 18v3h3l6.3-6.3"/><circle cx="18" cy="6" r="3"/></svg><div class="row"><span class="dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L3 18v3h3l6.3-6.3"/><circle cx="18" cy="6" r="3"/></svg></span><span class="en">FIBER SPLICING EQUIPMENT &amp; ACCESSORIES</span></div><h3 class="ar" hidden>معدات لحام الألياف الضوئية وإكسسواراتها</h3></article>
+    <article class="pcard" id="prod-electronics-devices"><div class="tone" style="background:linear-gradient(160deg,#0d1c40,#1c4bb8)"></div><svg class="big-icon" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg><img class="pc-img" src="assets/products/electronics-devices.jpg" alt="" loading="lazy" onload="this.classList.add('ok')" onerror="this.remove()"><div class="pc-shade"></div><div class="row"><span class="dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></span><span class="en">ELECTRONICS &amp; DEVICES</span></div><h3 class="ar" hidden>أجهزة والكترونيات</h3></article>
+    <article class="pcard" id="prod-security-systems"><div class="tone" style="background:linear-gradient(160deg,#1b1f2b,#3a4152)"></div><svg class="big-icon" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5Z"/></svg><img class="pc-img" src="assets/products/security-systems.jpg" alt="" loading="lazy" onload="this.classList.add('ok')" onerror="this.remove()"><div class="pc-shade"></div><div class="row"><span class="dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5Z"/></svg></span><span class="en">SECURITY SYSTEMS</span></div><h3 class="ar" hidden>أنظمة الأمن</h3></article>
+    <article class="pcard" id="prod-networking-equipment"><div class="tone" style="background:linear-gradient(160deg,#12203f,#2c4a86)"></div><svg class="big-icon" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><rect x="3" y="7" width="18" height="10" rx="2"/><path d="M7 21h10M12 17v4"/></svg><img class="pc-img" src="assets/products/networking-equipment.jpg" alt="" loading="lazy" onload="this.classList.add('ok')" onerror="this.remove()"><div class="pc-shade"></div><div class="row"><span class="dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="7" width="18" height="10" rx="2"/><path d="M7 21h10M12 17v4"/></svg></span><span class="en">NETWORKING EQUIPMENT</span></div><h3 class="ar" hidden>معدات الشبكات</h3></article>
+    <article class="pcard" id="prod-electrical-supplies"><div class="tone" style="background:linear-gradient(160deg,#5a3a12,#caa23a)"></div><svg class="big-icon" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg><img class="pc-img" src="assets/products/electrical-supplies.jpg" alt="" loading="lazy" onload="this.classList.add('ok')" onerror="this.remove()"><div class="pc-shade"></div><div class="row"><span class="dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg></span><span class="en">ELECTRICAL SUPPLIES</span></div><h3 class="ar" hidden>المستلزمات الكهربائية</h3></article>
+    <article class="pcard" id="prod-it-solutions"><div class="tone" style="background:linear-gradient(160deg,#0b1c40,#0d3a63)"></div><svg class="big-icon" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><rect x="4" y="3" width="6" height="18" rx="1"/><rect x="14" y="3" width="6" height="18" rx="1"/></svg><img class="pc-img" src="assets/products/it-solutions.jpg" alt="" loading="lazy" onload="this.classList.add('ok')" onerror="this.remove()"><div class="pc-shade"></div><div class="row"><span class="dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="4" y="3" width="6" height="18" rx="1"/><rect x="14" y="3" width="6" height="18" rx="1"/></svg></span><span class="en">IT SOLUTIONS</span></div><h3 class="ar" hidden>حلول تقنية المعلومات</h3></article>
+    <article class="pcard" id="prod-fiber-splicing-equipment"><div class="tone" style="background:linear-gradient(160deg,#3a0d1c,#8a1f2b)"></div><svg class="big-icon" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L3 18v3h3l6.3-6.3"/><circle cx="18" cy="6" r="3"/></svg><img class="pc-img" src="assets/products/fiber-splicing-equipment.jpg" alt="" loading="lazy" onload="this.classList.add('ok')" onerror="this.remove()"><div class="pc-shade"></div><div class="row"><span class="dot"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L3 18v3h3l6.3-6.3"/><circle cx="18" cy="6" r="3"/></svg></span><span class="en">OUR FIBER SPLICING EQUIPMENT</span></div><h3 class="ar" hidden>معدات اللحام الخاصة بنا</h3></article>
   </div>
 </div></section>
 
-<section class="why" style="position:relative;overflow:hidden">
+<section class="why" id="why" style="position:relative;overflow:hidden">
   <div class="geo dot-grid" style="width:220px;height:220px;left:-40px;top:-40px;color:#fff"></div>
   <div class="geo outline-square" style="width:100px;height:100px;right:6%;bottom:-30px;transform:rotate(35deg);color:#ff8b85"></div>
   <div class="container why-grid" style="position:relative;z-index:1">
   <div>
-    <div class="kicker light">WHY MASAR TRADING?</div>
-    <h2>Why Choose Masar Trading?</h2>
-    <p>We are committed to delivering the best solutions with quality, reliability and professional service.</p>
+    <div class="kicker light"><span class="en">WHY TRACK TRADE?</span><span class="ar" hidden>لماذا مسار للتجارة؟</span></div>
+    <h2><span class="en">Why Choose Track Trade?</span><span class="ar" hidden>لماذا تختار مسار للتجارة؟</span></h2>
+    <p><span class="en">We are committed to delivering the best solutions with quality, reliability and professional service.</span><span class="ar" hidden>نلتزم بتقديم أفضل الحلول بجودة وموثوقية وخدمة احترافية.</span></p>
   </div>
   <div class="why-item"><div class="wi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="m9 12 2 2 4-4"/><path d="M12 2 4 5v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V5Z"/></svg></div><div><h4 class="en">Quality Products</h4><span class="ar" hidden>منتجات عالية الجودة</span></div></div>
   <div class="why-item"><div class="wi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><div><h4 class="en">Reliability</h4><span class="ar" hidden>الالتزام بالمواعيد</span></div></div>
@@ -501,42 +1010,145 @@ body.lang-ar .masar-chat-msg-assistant{align-self:flex-end;border-bottom-left-ra
   <div class="why-item"><div class="wi"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg></div><div><h4 class="en">Customer Focus</h4><span class="ar" hidden>تركيز علي العميل</span></div></div>
 </div></section>
 
-<section class="projects" id="projects"><div class="container">
-  <div class="proj-top">
-    <div>
-      <div class="kicker"><span class="en">OUR PROJECTS </span><span class="ar" hidden>مشاريعنا</span></div>
-      <p>We take pride in our successful projects and the trust of our valued clients across different sectors.</p>
-      <a class="btn btn-outline dark" href="#">View All Projects →</a>
-    </div>
+<section class="projects" id="projects">
+  <div class="blk r" style="width:250px;height:250px;right:-70px;top:60px;transform:scaleX(-1)"></div>
+  <div class="blk n" style="width:290px;height:290px;left:-90px;bottom:-60px"></div>
+  <svg class="blk o red" viewBox="0 0 100 100" preserveAspectRatio="none" style="width:120px;height:120px;left:10%;top:26px" aria-hidden="true"><path d="M2,2 H98 V60 H54 V98 H2 Z" vector-effect="non-scaling-stroke"/></svg>
+  <div class="glow b" style="width:340px;height:340px;left:38%;top:-150px"></div>
+  <div class="glow r" style="width:240px;height:240px;right:24%;bottom:-120px"></div>
+  <div class="geo dot-grid" style="width:170px;height:170px;right:2%;top:22px;color:var(--shape)"></div>
+  <div class="geo outline-circle" style="width:220px;height:220px;left:-80px;top:38%;color:var(--shape)"></div>
+  <div class="geo outline-square" style="width:84px;height:84px;right:5%;bottom:60px;transform:rotate(20deg);color:var(--red)"></div>
+<div class="container">
+  <div class="section-head">
+    <div><div class="kicker"><span class="en">OUR PROJECTS </span><span class="ar" hidden>مشاريعنا</span></div><h2><span class="en">Projects We're Proud Of</span><span class="ar" hidden>مشاريع نفخر بها</span></h2></div>
+    <p><span class="en">We take pride in our successful projects and the trust of our valued clients across different sectors.</span><span class="ar" hidden>نفخر بمشاريعنا الناجحة وبثقة عملائنا الكرام في مختلف القطاعات.</span></p>
   </div>
-  <div class="proj-grid">
-    <article class="pj">
-      <h4 class="en">Boulevard City</h4><h4 class="ar" hidden>بوليفارد سيتي</h4>
-      <span class="en">Saudi Arabia — General Entertainment Authority</span>
-      <span class="ar" hidden>المملكة العربية السعودية — هيئة الترفيه</span>
-    </article>
-    <article class="pj" style="background:linear-gradient(150deg,#0d1c40,#2c4a86)">
-      <h4 class="en">City Walk</h4><h4 class="ar" hidden>سيتي ووك</h4>
-      <span class="en">Saudi Arabia — General Entertainment Authority</span>
-      <span class="ar" hidden>المملكة العربية السعودية — هيئة الترفيه</span>
-    </article>
-    <article class="pj" style="background:linear-gradient(150deg,#1b2540,#3a4a72)">
-      <h4 class="en">Royal Palace Security Systems</h4><h4 class="ar" hidden>أنظمة أمنية لقصور ملكية</h4>
-      <span class="en">Integrated CCTV &amp; access control — Saudi Arabia</span>
-      <span class="ar" hidden>كاميرات مراقبة وتحكم في الدخول متكامل — المملكة العربية السعودية</span>
-    </article>
-    <div class="partners">
-      <div>
-        <h4>Our Partners</h4>
-        <p>We work with leading brands to deliver the best solutions.</p>
-        <div class="partners-strip">
-          <div class="plogo">Partner A</div>
-          <div class="plogo">Partner B</div>
-          <div class="plogo">Partner C</div>
-          <div class="plogo">Partner D</div>
-        </div>
+  <div class="filters" id="projFilters" role="group" aria-label="Filter projects — تصفية المشاريع">
+    <button class="filter on" type="button" data-filter="all" aria-pressed="true"><span class="en">All</span><span class="ar" hidden>الكل</span></button>
+    <button class="filter" type="button" data-filter="ent" aria-pressed="false"><span class="en">Entertainment &amp; Events</span><span class="ar" hidden>ترفيه وفعاليات</span></button>
+    <button class="filter" type="button" data-filter="sec" aria-pressed="false"><span class="en">Security &amp; IT</span><span class="ar" hidden>أمن وتقنية</span></button>
+    <button class="filter" type="button" data-filter="fiber" aria-pressed="false"><span class="en">Fiber Optic</span><span class="ar" hidden>ألياف ضوئية</span></button>
+  </div>
+  <div class="proj-grid" id="projGrid">
+    <article class="pj" data-cat="ent" style="--pj-art:url(assets/projects/art/boulevard-city.svg);--pj-bg:linear-gradient(150deg,#132a5c,#1c4bb8)">
+      <img class="pj-img" src="assets/projects/boulevard-city.jpg" alt="Boulevard City" loading="lazy" onload="this.classList.add('ok')" onerror="this.remove()">
+      <div class="pj-shade"></div>
+      <div class="pj-cat"><span class="en">Entertainment &amp; Events</span><span class="ar" hidden>ترفيه وفعاليات</span></div>
+      <div class="pj-body">
+        <h4 class="en">Boulevard City</h4><h4 class="ar" hidden>بوليفارد سيتي</h4>
+        <div class="pj-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span class="en">Saudi Arabia</span><span class="ar" hidden>المملكة العربية السعودية</span></div>
       </div>
-      <div class="dots"><i class="on"></i><i></i><i></i><i></i></div>
+    </article>
+    <article class="pj" data-cat="ent" style="--pj-art:url(assets/projects/art/city-walk.svg);--pj-bg:linear-gradient(150deg,#132a5c,#1c4bb8)">
+      <img class="pj-img" src="assets/projects/city-walk.jpg" alt="City Walk" loading="lazy" onload="this.classList.add('ok')" onerror="this.remove()">
+      <div class="pj-shade"></div>
+      <div class="pj-cat"><span class="en">Entertainment &amp; Events</span><span class="ar" hidden>ترفيه وفعاليات</span></div>
+      <div class="pj-body">
+        <h4 class="en">City Walk</h4><h4 class="ar" hidden>سيتي ووك</h4>
+        <div class="pj-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span class="en">Saudi Arabia</span><span class="ar" hidden>المملكة العربية السعودية</span></div>
+      </div>
+    </article>
+    <article class="pj" data-cat="sec" style="--pj-art:url(assets/projects/art/cctv-data-center.svg);--pj-bg:linear-gradient(150deg,#1b2540,#3a4a72)">
+      <img class="pj-img" src="assets/projects/cctv-data-center.jpg" alt="CCTV & Data Center" loading="lazy" onload="this.classList.add('ok')" onerror="this.remove()">
+      <div class="pj-shade"></div>
+      <div class="pj-cat"><span class="en">Security &amp; IT</span><span class="ar" hidden>أمن وتقنية</span></div>
+      <div class="pj-body">
+        <h4 class="en">CCTV &amp; Data Center</h4><h4 class="ar" hidden>كاميرات المراقبة (CCTV) ومركز البيانات</h4>
+        <div class="pj-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span class="en">Saudi Arabia</span><span class="ar" hidden>المملكة العربية السعودية</span></div>
+      </div>
+    </article>
+    <article class="pj" data-cat="sec" style="--pj-art:url(assets/projects/art/control-room.svg);--pj-bg:linear-gradient(150deg,#1b2540,#3a4a72)">
+      <img class="pj-img" src="assets/projects/control-room.jpg" alt="Control Room Setup" loading="lazy" onload="this.classList.add('ok')" onerror="this.remove()">
+      <div class="pj-shade"></div>
+      <div class="pj-cat"><span class="en">Security &amp; IT</span><span class="ar" hidden>أمن وتقنية</span></div>
+      <div class="pj-body">
+        <h4 class="en">Control Room Setup</h4><h4 class="ar" hidden>تأسيس غرفة التحكم (Control Room)</h4>
+        <div class="pj-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span class="en">Saudi Arabia</span><span class="ar" hidden>المملكة العربية السعودية</span></div>
+      </div>
+    </article>
+    <article class="pj" data-cat="ent" style="--pj-art:url(assets/projects/art/wonder-garden.svg);--pj-bg:linear-gradient(150deg,#132a5c,#1c4bb8)">
+      <img class="pj-img" src="assets/projects/wonder-garden.jpg" alt="Wonder Garden" loading="lazy" onload="this.classList.add('ok')" onerror="this.remove()">
+      <div class="pj-shade"></div>
+      <div class="pj-cat"><span class="en">Entertainment &amp; Events</span><span class="ar" hidden>ترفيه وفعاليات</span></div>
+      <div class="pj-body">
+        <h4 class="en">Wonder Garden</h4><h4 class="ar" hidden>وندر جاردن</h4>
+        <div class="pj-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span class="en">Saudi Arabia</span><span class="ar" hidden>المملكة العربية السعودية</span></div>
+      </div>
+    </article>
+    <article class="pj" data-cat="ent" style="--pj-art:url(assets/projects/art/the-venue-riyadh.svg);--pj-bg:linear-gradient(150deg,#132a5c,#1c4bb8)">
+      <img class="pj-img" src="assets/projects/the-venue-riyadh.jpg" alt="The Venue Riyadh" loading="lazy" onload="this.classList.add('ok')" onerror="this.remove()">
+      <div class="pj-shade"></div>
+      <div class="pj-cat"><span class="en">Entertainment &amp; Events</span><span class="ar" hidden>ترفيه وفعاليات</span></div>
+      <div class="pj-body">
+        <h4 class="en">The Venue Riyadh</h4><h4 class="ar" hidden>ذا فينيو الرياض</h4>
+        <div class="pj-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span class="en">Saudi Arabia</span><span class="ar" hidden>المملكة العربية السعودية</span></div>
+      </div>
+    </article>
+    <article class="pj" data-cat="ent" style="--pj-art:url(assets/projects/art/super-cup-events.svg);--pj-bg:linear-gradient(150deg,#132a5c,#1c4bb8)">
+      <img class="pj-img" src="assets/projects/super-cup-events.jpg" alt="African, Spanish & Italian Super Cup Events" loading="lazy" onload="this.classList.add('ok')" onerror="this.remove()">
+      <div class="pj-shade"></div>
+      <div class="pj-cat"><span class="en">Entertainment &amp; Events</span><span class="ar" hidden>ترفيه وفعاليات</span></div>
+      <div class="pj-body">
+        <h4 class="en">African, Spanish &amp; Italian Super Cup Events</h4><h4 class="ar" hidden>فعاليات السوبر الأفريقي والإسباني والإيطالي</h4>
+        <div class="pj-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span class="en">Saudi Arabia</span><span class="ar" hidden>المملكة العربية السعودية</span></div>
+      </div>
+    </article>
+    <article class="pj" data-cat="ent" style="--pj-art:url(assets/projects/art/winter-wonderland.svg);--pj-bg:linear-gradient(150deg,#132a5c,#1c4bb8)">
+      <img class="pj-img" src="assets/projects/winter-wonderland.jpg" alt="Winter Wonderland" loading="lazy" onload="this.classList.add('ok')" onerror="this.remove()">
+      <div class="pj-shade"></div>
+      <div class="pj-cat"><span class="en">Entertainment &amp; Events</span><span class="ar" hidden>ترفيه وفعاليات</span></div>
+      <div class="pj-body">
+        <h4 class="en">Winter Wonderland</h4><h4 class="ar" hidden>وينتر وندرلاند</h4>
+        <div class="pj-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span class="en">Saudi Arabia</span><span class="ar" hidden>المملكة العربية السعودية</span></div>
+      </div>
+    </article>
+    <article class="pj" data-cat="ent" style="--pj-art:url(assets/projects/art/disneyland.svg);--pj-bg:linear-gradient(150deg,#132a5c,#1c4bb8)">
+      <img class="pj-img" src="assets/projects/disneyland.jpg" alt="Disneyland" loading="lazy" onload="this.classList.add('ok')" onerror="this.remove()">
+      <div class="pj-shade"></div>
+      <div class="pj-cat"><span class="en">Entertainment &amp; Events</span><span class="ar" hidden>ترفيه وفعاليات</span></div>
+      <div class="pj-body">
+        <h4 class="en">Disneyland</h4><h4 class="ar" hidden>ديزني لاند</h4>
+        <div class="pj-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span class="en">Saudi Arabia</span><span class="ar" hidden>المملكة العربية السعودية</span></div>
+      </div>
+    </article>
+    <article class="pj" data-cat="ent" style="--pj-art:url(assets/projects/art/harry-potter.svg);--pj-bg:linear-gradient(150deg,#132a5c,#1c4bb8)">
+      <img class="pj-img" src="assets/projects/harry-potter.jpg" alt="Harry Potter" loading="lazy" onload="this.classList.add('ok')" onerror="this.remove()">
+      <div class="pj-shade"></div>
+      <div class="pj-cat"><span class="en">Entertainment &amp; Events</span><span class="ar" hidden>ترفيه وفعاليات</span></div>
+      <div class="pj-body">
+        <h4 class="en">Harry Potter</h4><h4 class="ar" hidden>هاري بوتر</h4>
+        <div class="pj-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span class="en">Saudi Arabia</span><span class="ar" hidden>المملكة العربية السعودية</span></div>
+      </div>
+    </article>
+    <article class="pj" data-cat="fiber" style="--pj-art:url(assets/projects/art/fiber-cityscape.svg);--pj-bg:linear-gradient(150deg,#0b1c40,#0d3a63)">
+      <img class="pj-img" src="assets/projects/fiber-cityscape.jpg" alt="Fiber Optic — Cityscape" loading="lazy" onload="this.classList.add('ok')" onerror="this.remove()">
+      <div class="pj-shade"></div>
+      <div class="pj-cat"><span class="en">Fiber Optic</span><span class="ar" hidden>ألياف ضوئية</span></div>
+      <div class="pj-body">
+        <h4 class="en">Fiber Optic — Cityscape</h4><h4 class="ar" hidden>الفايبر — ستي سكيب</h4>
+        <div class="pj-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span class="en">Saudi Arabia</span><span class="ar" hidden>المملكة العربية السعودية</span></div>
+      </div>
+    </article>
+    <a class="pj pj-cta" href="#contact">
+      <svg class="pj-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+      <div class="pj-body">
+        <h4 class="en">Have a project in mind?</h4><h4 class="ar" hidden>عندك مشروع في بالك؟</h4>
+        <span class="en">Tell us about it — we reply on WhatsApp.</span><span class="ar" hidden>قولنا عنه — بنرد عليك على واتساب.</span>
+      </div>
+    </a>
+  </div>
+  <div class="clients" id="partners">
+    <h4><span class="en">Our Partners in Success</span><span class="ar" hidden>شركاء نجاحنا</span></h4>
+    <div class="clients-grid">
+      <div class="cl-cell"><img class="cl-img" src="assets/partners/general-entertainment-authority.png" alt="General Entertainment Authority" loading="lazy" onload="this.classList.add('ok');this.nextElementSibling.hidden=true" onerror="this.remove()"><div class="cl-fb"><div class="cl-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.5 6.6 19.5l1.2-6L3.3 9.3l6.1-.7Z"/></svg></div><div class="cl-name"><span class="en">General Entertainment Authority</span><span class="ar" hidden>الهيئة العامة للترفيه</span></div></div></div>
+      <div class="cl-cell"><img class="cl-img" src="assets/partners/stc-solutions.png" alt="solutions by stc" loading="lazy" onload="this.classList.add('ok');this.nextElementSibling.hidden=true" onerror="this.remove()"><div class="cl-fb"><div class="cl-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12a9 9 0 0 1 14 0M8 15a5 5 0 0 1 8 0"/><circle cx="12" cy="18.5" r="1.2" fill="currentColor"/></svg></div><div class="cl-name"><span class="en">solutions by stc</span><span class="ar" hidden>الاتصالات السعودية — solutions by stc</span></div></div></div>
+      <div class="cl-cell"><img class="cl-img" src="assets/partners/ministry-environment-water-agriculture.png" alt="Ministry of Environment, Water and Agriculture" loading="lazy" onload="this.classList.add('ok');this.nextElementSibling.hidden=true" onerror="this.remove()"><div class="cl-fb"><div class="cl-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 6 6 10.5A6 6 0 0 1 6 13.5C6 9 12 3 12 3Z"/><path d="M12 21v-8M12 16l3-3"/></svg></div><div class="cl-name"><span class="en">Ministry of Environment, Water and Agriculture</span><span class="ar" hidden>وزارة البيئة والمياه والزراعة</span></div></div></div>
+      <div class="cl-cell"><img class="cl-img" src="assets/partners/ministry-health.png" alt="Ministry of Health" loading="lazy" onload="this.classList.add('ok');this.nextElementSibling.hidden=true" onerror="this.remove()"><div class="cl-fb"><div class="cl-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8v8M8 12h8"/></svg></div><div class="cl-name"><span class="en">Ministry of Health</span><span class="ar" hidden>وزارة الصحة</span></div></div></div>
+      <div class="cl-cell"><img class="cl-img" src="assets/partners/ministry-justice.png" alt="Ministry of Justice" loading="lazy" onload="this.classList.add('ok');this.nextElementSibling.hidden=true" onerror="this.remove()"><div class="cl-fb"><div class="cl-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v16M6 20h12M4 8h16"/><path d="M6 8 3.5 14a3 3 0 0 0 5 0Zm12 0-2.5 6a3 3 0 0 0 5 0Z"/></svg></div><div class="cl-name"><span class="en">Ministry of Justice</span><span class="ar" hidden>وزارة العدل</span></div></div></div>
+      <div class="cl-cell"><img class="cl-img" src="assets/partners/ministry-media.png" alt="Ministry of Media" loading="lazy" onload="this.classList.add('ok');this.nextElementSibling.hidden=true" onerror="this.remove()"><div class="cl-fb"><div class="cl-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16v12H4Z"/><path d="M4 8l8 5 8-5"/></svg></div><div class="cl-name"><span class="en">Ministry of Media</span><span class="ar" hidden>وزارة الإعلام</span></div></div></div>
+      <div class="cl-cell"><img class="cl-img" src="assets/partners/saudi-aramco.png" alt="Saudi Aramco" loading="lazy" onload="this.classList.add('ok');this.nextElementSibling.hidden=true" onerror="this.remove()"><div class="cl-fb"><div class="cl-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg></div><div class="cl-name"><span class="en">Saudi Aramco</span><span class="ar" hidden>أرامكو السعودية</span></div></div></div>
+      <div class="cl-cell"><img class="cl-img" src="assets/partners/sela.png" alt="Sela" loading="lazy" onload="this.classList.add('ok');this.nextElementSibling.hidden=true" onerror="this.remove()"><div class="cl-fb"><div class="cl-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 12h16M12 4v16"/></svg></div><div class="cl-name"><span class="en">Sela</span><span class="ar" hidden>صلة</span></div></div></div>
     </div>
   </div>
 </div></section>
@@ -552,16 +1164,24 @@ body.lang-ar .masar-chat-msg-assistant{align-self:flex-end;border-bottom-left-ra
     <div class="contact-info">
       <div class="crow"><span class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .3 2 .7 3a2 2 0 0 1-.4 2.1L8 10.3a16 16 0 0 0 6 6l1.5-1.4a2 2 0 0 1 2-.4c1 .3 2 .5 3 .6a2 2 0 0 1 1.5 2Z"/></svg></span><div><small class="en">Phone</small><small class="ar" hidden>الهاتف</small><strong>0502295525</strong><br><strong>01212520555</strong></div></div>
       <div class="crow"><span class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg></span><div><small class="en">Email</small><small class="ar" hidden>البريد الإلكتروني</small><strong>info@track-egy.com</strong></div></div>
-      <div class="crow"><span class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><div><small class="en">Egypt (Head Office)</small><small class="ar" hidden>مصر (المقر الرئيسي)</small><strong class="en">Mansoura, First Suez Canal Street, above Tomah Restaurant</strong><strong class="ar" hidden>المنصورة، أول شارع قناة السويس، فوق مطعم تومة</strong></div></div>
-      <div class="crow"><span class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><div><small class="en">Saudi Arabia</small><small class="ar" hidden>المملكة العربية السعودية</small><strong class="en">We have a branch in Saudi Arabia — contact our Egypt office for details.</strong><strong class="ar" hidden>لدينا فرع في المملكة العربية السعودية — تواصل مع مكتب مصر لمزيد من التفاصيل.</strong></div></div>
+      <div class="crow"><span class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><div><small class="en">Egypt (Head Office)</small><small class="ar" hidden>مصر (المقر الرئيسي)</small><a href="https://maps.app.goo.gl/ZtWT8QjEVjkFR4x66?g_st=ic" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline"><strong class="en">Mansoura, First Suez Canal Street, above Tomah Restaurant, next to Sabahi Restaurant</strong><strong class="ar" hidden>المنصورة، أول شارع قناة السويس، أعلى مطعم تومة، بجوار مطعم الصباحي</strong></a></div></div>
+      <div class="crow"><span class="ci"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 21s7-6.3 7-11.5A7 7 0 0 0 5 9.5C5 14.7 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><div><small class="en">Saudi Arabia</small><small class="ar" hidden>المملكة العربية السعودية</small><strong class="en">The company was established in Saudi Arabia.</strong><strong class="ar" hidden>تأسست الشركة في المملكة العربية السعودية.</strong></div></div>
     </div>
-    <form class="form" onsubmit="event.preventDefault();alert(document.body.classList.contains('lang-ar') ? 'نموذج تجريبي — هيتم ربطه بالإيميل/واتساب بعد الإعداد النهائي.' : 'Demo form — connect it to email/WhatsApp after final setup.');">
+    <form class="form" id="contactForm" novalidate>
+      <p class="form-lead"><span class="en">Tell us what you need, then choose how to send it. WhatsApp is the fastest way to reach our team.</span><span class="ar" hidden>قولنا محتاج إيه، وبعدها اختار تبعتها إزاي. واتساب هو أسرع طريقة توصل بيها لفريقنا.</span></p>
       <div class="form-grid">
-        <div class="field"><label><span class="en">Your Name</span><span class="ar" hidden>الاسم</span></label><input data-en-ph="Your Name" data-ar-ph="الاسم" placeholder="Your Name"></div>
-        <div class="field"><label><span class="en">Your Email</span><span class="ar" hidden>البريد الإلكتروني</span></label><input type="email" data-en-ph="Your Email" data-ar-ph="البريد الإلكتروني" placeholder="Your Email"></div>
-        <div class="field full"><label><span class="en">Your Message</span><span class="ar" hidden>رسالتك</span></label><textarea data-en-ph="Your Message" data-ar-ph="رسالتك" placeholder="Your Message"></textarea></div>
-        <div class="field full"><button class="btn btn-primary" type="submit"><span class="en">Send Message →</span><span class="ar" hidden>إرسال الرسالة ←</span></button></div>
+        <div class="field"><label for="cfName"><span class="en">Your Name</span><span class="ar" hidden>الاسم</span></label><input id="cfName" autocomplete="name" data-en-ph="Your Name" data-ar-ph="الاسم" placeholder="Your Name"></div>
+        <div class="field"><label for="cfEmail"><span class="en">Your Email (optional)</span><span class="ar" hidden>البريد الإلكتروني (اختياري)</span></label><input id="cfEmail" type="email" autocomplete="email" data-en-ph="Your Email" data-ar-ph="البريد الإلكتروني" placeholder="Your Email"></div>
+        <div class="field full"><label for="cfMsg"><span class="en">Your Message</span><span class="ar" hidden>رسالتك</span></label><textarea id="cfMsg" data-en-ph="Your Message" data-ar-ph="رسالتك" placeholder="Your Message"></textarea></div>
+        <div class="field full">
+          <div class="form-actions">
+            <button class="btn btn-wa" type="submit"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.7 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.8-4.2-5-4.4-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.4.2.5.7 1.8.8 1.9.1.2.1.3 0 .5-.6 1.2-1.2 1.1-.9 1.7.9 1.9 1.8 2.6 3.5 3.4.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.5.7 1.8.8.3.1.4.2.5.3.1.2.1.9-.1 1.6Z"/></svg><span class="en">Send via WhatsApp</span><span class="ar" hidden>إرسال عبر واتساب</span></button>
+            <button class="btn btn-ghost" type="button" id="sendEmailBtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg><span class="en">Send by Email</span><span class="ar" hidden>إرسال عبر البريد</span></button>
+          </div>
+          <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+        </div>
       </div>
+      <p class="form-note"><span class="en"><b>Where does your message go?</b> Nowhere until you send it yourself. The buttons open WhatsApp (a chat with our team on 01212520555) or your email app (addressed to info@track-egy.com) with your message already written. You check it and press Send. This website does not store or collect what you type here.</span><span class="ar" hidden><b>رسالتك بتروح فين؟</b> مبتروحش لأي مكان قبل ما تبعتها بنفسك. الزرار بيفتح واتساب (محادثة مع فريقنا على 01212520555) أو تطبيق البريد عندك (موجّه إلى info@track-egy.com) ورسالتك مكتوبة جاهزة، وإنت بتراجعها وتضغط إرسال. الموقع نفسه لا يخزّن ولا يجمع أي حاجة بتكتبها هنا.</span></p>
     </form>
     <div class="together"><h3><span class="en">Let's Build<br>Something<br>Great Together</span><span class="ar" hidden>يلا نبني<br>حاجة عظيمة<br>مع بعض</span></h3></div>
   </div>
@@ -572,8 +1192,30 @@ body.lang-ar .masar-chat-msg-assistant{align-self:flex-end;border-bottom-left-ra
   <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.7 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.8-4.2-5-4.4-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.4.2.5.7 1.8.8 1.9.1.2.1.3 0 .5-.6 1.2-1.2 1.1-.9 1.7.9 1.9 1.8 2.6 3.5 3.4.3.1.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.5.7 1.8.8.3.1.4.2.5.3.1.2.1.9-.1 1.6Z"/></svg>
 </a>
 
+<div class="sol-modal" id="solModal" hidden>
+  <div class="sol-backdrop" data-sol-close></div>
+  <div class="sol-card" role="dialog" aria-modal="true" aria-labelledby="solTitle" tabindex="-1">
+    <button class="sol-x" type="button" data-sol-close aria-label="Close — إغلاق">&times;</button>
+    <div class="sol-head" id="solHead">
+      <img class="sol-img" id="solImg" alt="" onload="this.classList.add('ok')" onerror="this.removeAttribute('src');this.classList.remove('ok')">
+      <div class="sol-shade"></div>
+      <div class="sol-headtext"><div class="sol-kicker" id="solKicker"></div><h3 id="solTitle"></h3></div>
+    </div>
+    <div class="sol-body">
+      <p class="sol-over" id="solOver"></p>
+      <h4 id="solCoversH"></h4>
+      <ul class="sol-list" id="solList"></ul>
+      <div class="sol-note" id="solNote" hidden></div>
+    </div>
+    <div class="sol-foot">
+      <a class="btn btn-primary" id="solWa" target="_blank" rel="noopener"></a>
+      <a class="btn btn-outline dark" id="solQuote" href="#contact"></a>
+      <a class="sol-more" id="solMore" href="#projects" hidden></a>
+    </div>
+  </div>
+</div>
 <div id="masarChat">
-  <button id="masarChatToggle" class="masar-chat-toggle" aria-label="Chat with us" aria-expanded="false">
+  <button id="masarChatToggle" class="masar-chat-toggle" aria-label="Inquiries" aria-expanded="false">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5Z"/></svg>
   </button>
   <div id="masarChatPanel" class="masar-chat-panel" hidden>
@@ -586,17 +1228,18 @@ body.lang-ar .masar-chat-msg-assistant{align-self:flex-end;border-bottom-left-ra
           </svg>
         </span>
         <span class="masar-chat-head-text">
-          <span><span class="en">Tech Track Assistant</span><span class="ar" hidden>مساعد تك تراك</span></span>
-          <small><span class="en">Usually replies in seconds</span><span class="ar" hidden>بيرد عادةً في ثوانٍ</span></small>
+          <span><span class="en">Track Trade</span><span class="ar" hidden>مسار للتجارة</span></span>
+          <small><span class="en">Inquiries are answered on WhatsApp</span><span class="ar" hidden>بنرد على استفساراتك عبر واتساب</span></small>
         </span>
       </span>
       <button id="masarChatClose" aria-label="Close chat">&times;</button>
     </div>
     <div id="masarChatMessages" class="masar-chat-messages"></div>
     <form id="masarChatForm" class="masar-chat-form">
-      <input id="masarChatInput" type="text" placeholder="Type your question…" autocomplete="off">
+      <input id="masarChatInput" type="text" placeholder="Type your inquiry…" autocomplete="off">
       <button id="masarChatSend" type="submit" aria-label="Send">→</button>
     </form>
+    <div class="masar-chat-foot"><button id="masarChatEnd" type="button"><span class="en">End conversation</span><span class="ar" hidden>إنهاء المحادثة</span></button></div>
   </div>
 </div>
 
@@ -611,19 +1254,20 @@ body.lang-ar .masar-chat-msg-assistant{align-self:flex-end;border-bottom-left-ra
         </svg>
         <span class="brand-text">tech<br>track<small style="color:#8a97bc" class="ar-always">مسار للتجارة</small></span>
       </a>
-      <p style="margin-top:16px">Your trusted partner for smart trading solutions — quality products, reliable service.</p>
+      <p style="margin-top:16px"><span class="en">Your trusted partner for smart trading solutions — quality products, reliable service.</span><span class="ar" hidden>شريكك الموثوق في حلول التجارة الذكية — منتجات عالية الجودة وخدمة يُعتمد عليها.</span></p>
+      <p class="motto-line"><span class="en">Your Safety Is Our Path</span><span class="ar" hidden>أمانك مسارنا</span></p>
     </div>
-    <div><h4>Quick Links</h4><div class="footer-links"><a href="#home">Home</a><a href="#about">About Us</a><a href="#services">Services</a></div></div>
-    <div><h4>&nbsp;</h4><div class="footer-links"><a href="#products">Products</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div></div>
-    <div><h4>Follow Us</h4><div class="social">
+    <div><h4><span class="en">Quick Links</span><span class="ar" hidden>روابط سريعة</span></h4><div class="footer-links"><a href="#home"><span class="en">Home</span><span class="ar" hidden>الرئيسية</span></a><a href="#about"><span class="en">About Us</span><span class="ar" hidden>من نحن</span></a><a href="#services"><span class="en">Services</span><span class="ar" hidden>خدماتنا</span></a></div></div>
+    <div><h4>&nbsp;</h4><div class="footer-links"><a href="#products"><span class="en">Products</span><span class="ar" hidden>منتجاتنا</span></a><a href="#projects"><span class="en">Projects</span><span class="ar" hidden>مشاريعنا</span></a><a href="#contact"><span class="en">Contact</span><span class="ar" hidden>تواصل معنا</span></a></div></div>
+    <div><h4><span class="en">Follow Us</span><span class="ar" hidden>تابعنا</span></h4><div class="social">
       <a href="https://www.facebook.com/share/1DKzpLDZBc/?mibextid=wwXIfr" target="_blank" rel="noopener" aria-label="Facebook"><svg width="15" height="15" viewBox="0 0 24 24" fill="#c9d4ef"><path d="M13 22v-8h3l1-4h-4V7.5c0-1.2.3-2 2-2H17V2h-3c-3 0-4.5 1.7-4.5 4.5V10H7v4h2.5v8Z"/></svg></a>
-      <a href="#" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="#c9d4ef"><path d="M4 4h4v16H4zM6 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm5 6h4v2.2c.7-1.2 2-2.4 4-2.4 3 0 5 2 5 5.7V20h-4v-6.5c0-1.7-.6-2.7-2-2.7-1.6 0-2.5 1.1-2.5 2.7V20h-4Z"/></svg></a>
-      <a href="#" aria-label="YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="#c9d4ef"><path d="M22 12s0-3.2-.4-4.7c-.2-.9-.9-1.6-1.8-1.8C18.3 5 12 5 12 5s-6.3 0-7.8.5c-.9.2-1.6.9-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.7c.2.9.9 1.6 1.8 1.8C5.7 19 12 19 12 19s6.3 0 7.8-.5c.9-.2 1.6-.9 1.8-1.8.4-1.5.4-4.7.4-4.7ZM10 15V9l5.2 3Z"/></svg></a>
-      <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="#c9d4ef"><path d="M3 3h4.5l4 5.6L16.2 3H21l-6.9 8.9L21 21h-4.5l-4.3-6-5 6H3l7.3-9.3Z"/></svg></a>
-      <a href="#" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c9d4ef" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+      <a href="https://www.linkedin.com/in/tech-track-b02575439/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="15" height="15" viewBox="0 0 24 24" fill="#c9d4ef"><path d="M4 4h4v16H4zM6 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm5 6h4v2.2c.7-1.2 2-2.4 4-2.4 3 0 5 2 5 5.7V20h-4v-6.5c0-1.7-.6-2.7-2-2.7-1.6 0-2.5 1.1-2.5 2.7V20h-4Z"/></svg></a>
+      <a href="https://www.youtube.com/channel/UCzJVSyhUOHlu6dr2hxH1xIw" target="_blank" rel="noopener" aria-label="YouTube"><svg width="15" height="15" viewBox="0 0 24 24" fill="#c9d4ef"><path d="M22 12s0-3.2-.4-4.7c-.2-.9-.9-1.6-1.8-1.8C18.3 5 12 5 12 5s-6.3 0-7.8.5c-.9.2-1.6.9-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.7c.2.9.9 1.6 1.8 1.8C5.7 19 12 19 12 19s6.3 0 7.8-.5c.9-.2 1.6-.9 1.8-1.8.4-1.5.4-4.7.4-4.7ZM10 15V9l5.2 3Z"/></svg></a>
+      <a href="https://x.com/techtrack11" target="_blank" rel="noopener" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="#c9d4ef"><path d="M3 3h4.5l4 5.6L16.2 3H21l-6.9 8.9L21 21h-4.5l-4.3-6-5 6H3l7.3-9.3Z"/></svg></a>
+      <a href="https://www.instagram.com/tech.trackk/" target="_blank" rel="noopener" aria-label="Instagram"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#c9d4ef" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
     </div></div>
   </div>
-  <div class="copyright"><span>© 2026 Masar Trading. All Rights Reserved.</span><span>Designed with ❤ for a better tomorrow</span></div>
+  <div class="copyright"><span><span class="en">© 2026 Track Trade. All Rights Reserved.</span><span class="ar" hidden>© 2026 مسار للتجارة. جميع الحقوق محفوظة.</span></span><span><span class="en">Designed with ❤ for a better tomorrow</span><span class="ar" hidden>صُمم بـ ❤ من أجل غدٍ أفضل</span></span></div>
 </div></footer>
 
 <script>
@@ -646,6 +1290,7 @@ body.lang-ar .masar-chat-msg-assistant{align-self:flex-end;border-bottom-left-ra
       el.setAttribute('placeholder', isAr ? el.getAttribute('data-ar-ph') : el.getAttribute('data-en-ph'));
     });
     if (typeof window.masarChatSetLang === 'function') window.masarChatSetLang(lang);
+    if (typeof window.masarSolSetLang === 'function') window.masarSolSetLang(lang);
   }
   switcher.addEventListener('click', function(){
     setLang(body.classList.contains('lang-ar') ? 'en' : 'ar');
@@ -661,9 +1306,45 @@ body.lang-ar .masar-chat-msg-assistant{align-self:flex-end;border-bottom-left-ra
     {en:'Home', ar:'الرئيسية', href:'#home'},
     {en:'About Us', ar:'من نحن', href:'#about'},
     {en:'Services', ar:'خدماتنا', href:'#services'},
+    {en:'Trading & Supplies', ar:'التجارة والتوريدات', href:'#svc-trading'},
+    {en:'Technology Solutions', ar:'حلول التكنولوجيا', href:'#svc-tech'},
+    {en:'Security Solutions', ar:'حلول الأمن والمراقبة', href:'#svc-security'},
+    {en:'Integrated Security Systems', ar:'أنظمة الأمن المتكاملة', href:'#svc-integrated-security'},
+    {en:'Fiber Optic Solutions', ar:'حلول الألياف الضوئية', href:'#svc-fiber'},
+    {en:'Networking Solutions', ar:'حلول الشبكات', href:'#svc-network'},
+    {en:'Technical Support', ar:'الدعم الفني', href:'#svc-support'},
+    {en:'Project Solutions', ar:'حلول المشاريع', href:'#svc-project'},
     {en:'Products', ar:'منتجاتنا', href:'#products'},
+    {en:'Electronics & Devices', ar:'الإلكترونيات والأجهزة', href:'#products'},
+    {en:'Security Systems', ar:'أنظمة الأمن', href:'#products'},
+    {en:'Networking Equipment', ar:'معدات الشبكات', href:'#products'},
+    {en:'Our Fiber Splicing Equipment', ar:'معدات اللحام الخاصة بنا', href:'#prod-fiber-splicing-equipment'},
+    {en:'Electrical Supplies', ar:'المستلزمات الكهربائية', href:'#products'},
+    {en:'IT Solutions', ar:'حلول تقنية المعلومات', href:'#products'},
     {en:'Projects', ar:'مشاريعنا', href:'#projects'},
-    {en:'Contact Us', ar:'تواصل معنا', href:'#contact'}
+    {en:'Boulevard City', ar:'بوليفارد سيتي', href:'#projects'},
+    {en:'City Walk', ar:'سيتي ووك', href:'#projects'},
+    {en:'CCTV & Data Center', ar:'كاميرات المراقبة ومركز البيانات', href:'#projects'},
+    {en:'Control Room Setup', ar:'تأسيس غرفة التحكم', href:'#projects'},
+    {en:'Wonder Garden', ar:'وندر جاردن', href:'#projects'},
+    {en:'The Venue Riyadh', ar:'ذا فينيو الرياض', href:'#projects'},
+    {en:'Super Cup Events (African, Spanish, Italian)', ar:'فعاليات السوبر الأفريقي والإسباني والإيطالي', href:'#projects'},
+    {en:'Winter Wonderland', ar:'وينتر وندرلاند', href:'#projects'},
+    {en:'Disneyland', ar:'ديزني لاند', href:'#projects'},
+    {en:'Harry Potter', ar:'هاري بوتر', href:'#projects'},
+    {en:'Fiber Optic — Cityscape', ar:'الفايبر — ستي سكيب', href:'#projects'},
+    {en:'Partners in success', ar:'شركاء النجاح', href:'#partners'},
+    {en:'General Entertainment Authority', ar:'الهيئة العامة للترفيه', href:'#partners'},
+    {en:'solutions by stc', ar:'الاتصالات السعودية (stc)', href:'#partners'},
+    {en:'Ministry of Environment, Water and Agriculture', ar:'وزارة البيئة والمياه والزراعة', href:'#partners'},
+    {en:'Ministry of Health', ar:'وزارة الصحة', href:'#partners'},
+    {en:'Ministry of Justice', ar:'وزارة العدل', href:'#partners'},
+    {en:'Ministry of Media', ar:'وزارة الإعلام', href:'#partners'},
+    {en:'Saudi Aramco', ar:'أرامكو السعودية', href:'#partners'},
+    {en:'Sela', ar:'صلة', href:'#partners'},
+    {en:'Contact Us', ar:'تواصل معنا', href:'#contact'},
+    {en:'Phone', ar:'الهاتف', href:'#contact'},
+    {en:'Email', ar:'البريد الإلكتروني', href:'#contact'}
   ];
 
   var overlay = document.getElementById('searchOverlay');
@@ -688,7 +1369,12 @@ body.lang-ar .masar-chat-msg-assistant{align-self:flex-end;border-bottom-left-ra
         e.preventDefault();
         closeSearch();
         var t = document.querySelector(item.href);
-        if(t) t.scrollIntoView({behavior:'smooth'});
+        if(!t) return;
+        t.scrollIntoView({behavior:'smooth'});
+        if(item.href.indexOf('#svc-') === 0){
+          t.classList.remove('svc-hl'); void t.offsetWidth; t.classList.add('svc-hl');
+          setTimeout(function(){ t.classList.remove('svc-hl'); }, 1900);
+        }
       });
       results.appendChild(a);
     });
@@ -732,7 +1418,277 @@ body.lang-ar .masar-chat-msg-assistant{align-self:flex-end;border-bottom-left-ra
 })();
 </script>
 <script>
-  var MASAR_CHAT_CONFIG = { endpoint: 'chat-api.php' };
+/* ---------- Light / dark theme ---------- */
+(function(){
+  var btn = document.getElementById('themeToggle');
+  var root = document.documentElement;
+  if(!btn) return;
+  function apply(theme){
+    var dark = theme === 'dark';
+    root.setAttribute('data-theme', dark ? 'dark' : 'light');
+    var label = dark ? 'Switch to light mode — الوضع الفاتح' : 'Switch to dark mode — الوضع الداكن';
+    btn.setAttribute('aria-label', label);
+    btn.setAttribute('title', label);
+    btn.setAttribute('aria-pressed', dark ? 'true' : 'false');
+  }
+  apply(root.getAttribute('data-theme') || 'light');
+  btn.addEventListener('click', function(){
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    apply(next);
+    try { localStorage.setItem('trackTheme', next); } catch(e) {}
+  });
+})();
+
+/* ---------- Get In Touch form ----------
+   No server involved: the buttons build the visitor's message and hand it to
+   WhatsApp (wa.me link) or their own email app (mailto:). The visitor reviews
+   and presses Send there. Nothing typed here is stored by this website. */
+(function(){
+  var form = document.getElementById('contactForm');
+  if(!form) return;
+  var WA = '201212520555', MAIL = 'info@track-egy.com';
+  var nameEl = document.getElementById('cfName');
+  var emailEl = document.getElementById('cfEmail');
+  var msgEl = document.getElementById('cfMsg');
+  var status = document.getElementById('formStatus');
+  var emailBtn = document.getElementById('sendEmailBtn');
+
+  var T = {
+    en: {
+      need: 'Please enter your name and your message.',
+      badEmail: 'That email address doesn\u2019t look right. Please check it or leave it empty.',
+      wa: 'Opening WhatsApp\u2026 press Send there to deliver your message.',
+      mail: 'Opening your email app\u2026 press Send there to deliver your message.',
+      subject: 'Website inquiry \u2014 Track Trade'
+    },
+    ar: {
+      need: '\u0645\u0646 \u0641\u0636\u0644\u0643 \u0627\u0643\u062a\u0628 \u0627\u0633\u0645\u0643 \u0648\u0631\u0633\u0627\u0644\u062a\u0643.',
+      badEmail: '\u0627\u0644\u0628\u0631\u064a\u062f \u0627\u0644\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a \u0645\u0634 \u0628\u0627\u064a\u0646 \u0625\u0646\u0647 \u0635\u062d\u064a\u062d\u060c \u0631\u0627\u062c\u0639\u0647 \u0623\u0648 \u0633\u064a\u0628\u0647 \u0641\u0627\u0636\u064a.',
+      wa: '\u0628\u0646\u0641\u062a\u062d \u0648\u0627\u062a\u0633\u0627\u0628\u2026 \u0627\u0636\u063a\u0637 \u0625\u0631\u0633\u0627\u0644 \u0647\u0646\u0627\u0643 \u0639\u0634\u0627\u0646 \u062a\u0648\u0635\u0644 \u0631\u0633\u0627\u0644\u062a\u0643.',
+      mail: '\u0628\u0646\u0641\u062a\u062d \u062a\u0637\u0628\u064a\u0642 \u0627\u0644\u0628\u0631\u064a\u062f\u2026 \u0627\u0636\u063a\u0637 \u0625\u0631\u0633\u0627\u0644 \u0647\u0646\u0627\u0643 \u0639\u0634\u0627\u0646 \u062a\u0648\u0635\u0644 \u0631\u0633\u0627\u0644\u062a\u0643.',
+      subject: '\u0627\u0633\u062a\u0641\u0633\u0627\u0631 \u0645\u0646 \u0627\u0644\u0645\u0648\u0642\u0639 \u2014 \u0645\u0633\u0627\u0631 \u0644\u0644\u062a\u062c\u0627\u0631\u0629'
+    }
+  };
+  function lang(){ return document.body.classList.contains('lang-ar') ? 'ar' : 'en'; }
+  var sw = document.getElementById('langSwitch');
+  if(sw) sw.addEventListener('click', function(){ status.textContent = ''; status.className = 'form-status'; });
+  function say(text, kind){ status.textContent = text; status.className = 'form-status' + (kind ? ' ' + kind : ''); }
+
+  function read(){
+    var d = { name: nameEl.value.trim(), email: emailEl.value.trim(), message: msgEl.value.trim() };
+    if(!d.name || !d.message){ say(T[lang()].need, 'err'); (d.name ? msgEl : nameEl).focus(); return null; }
+    if(d.email && !emailEl.checkValidity()){ say(T[lang()].badEmail, 'err'); emailEl.focus(); return null; }
+    return d;
+  }
+  function body(d){
+    if(lang() === 'ar'){
+      return '\u0645\u0631\u062d\u0628\u0627\u064b \u0645\u0633\u0627\u0631 \u0644\u0644\u062a\u062c\u0627\u0631\u0629\u060c\n\u0627\u0644\u0627\u0633\u0645: ' + d.name + (d.email ? '\n\u0627\u0644\u0628\u0631\u064a\u062f \u0627\u0644\u0625\u0644\u0643\u062a\u0631\u0648\u0646\u064a: ' + d.email : '') + '\n\n' + d.message;
+    }
+    return 'Hello Track Trade,\nName: ' + d.name + (d.email ? '\nEmail: ' + d.email : '') + '\n\n' + d.message;
+  }
+  function openLink(url){
+    var a = document.createElement('a');
+    a.href = url; a.target = '_blank'; a.rel = 'noopener';
+    document.body.appendChild(a); a.click(); a.remove();
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var d = read(); if(!d) return;
+    openLink('https://wa.me/' + WA + '?text=' + encodeURIComponent(body(d)));
+    say(T[lang()].wa, 'ok');
+  });
+  emailBtn.addEventListener('click', function(){
+    var d = read(); if(!d) return;
+    say(T[lang()].mail, 'ok');
+    window.location.href = 'mailto:' + MAIL + '?subject=' + encodeURIComponent(T[lang()].subject) + '&body=' + encodeURIComponent(body(d));
+  });
+})();
+</script>
+<script>
+/* ---------- Mobile menu, scroll-spy, project filters ---------- */
+(function(){
+  var btn=document.getElementById('menuBtn'), nav=document.getElementById('siteLinks');
+  if(btn&&nav){
+    function close(){nav.classList.remove('open');btn.setAttribute('aria-expanded','false');}
+    btn.addEventListener('click',function(e){e.stopPropagation();var o=nav.classList.toggle('open');btn.setAttribute('aria-expanded',o?'true':'false');});
+    nav.addEventListener('click',function(e){if(e.target.closest('a'))close();});
+    document.addEventListener('click',function(e){if(!nav.contains(e.target)&&!btn.contains(e.target))close();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+    window.addEventListener('resize',function(){if(window.innerWidth>1000)close();});
+  }
+  var links=[].slice.call(document.querySelectorAll('.links > a[href^="#"]:not(.links-cta), .links > .nav-dd > .nav-link')), map={};
+  links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.classList.toggle('active',a===map[e.target.id]);});}});},{rootMargin:'-45% 0px -50% 0px'});
+    Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el);});
+  }
+  var bar=document.getElementById('projFilters');
+  if(bar){
+    var cards=[].slice.call(document.querySelectorAll('#projGrid .pj[data-cat]'));
+    bar.addEventListener('click',function(e){
+      var b=e.target.closest('.filter'); if(!b) return;
+      var f=b.getAttribute('data-filter');
+      [].forEach.call(bar.querySelectorAll('.filter'),function(x){var on=x===b;x.classList.toggle('on',on);x.setAttribute('aria-pressed',on?'true':'false');});
+      cards.forEach(function(c){if(f==='all'||c.getAttribute('data-cat')===f)c.removeAttribute('hidden');else c.setAttribute('hidden','');});
+    });
+  }
+})();
+</script>
+<script>
+/* ---------- Hero slider ---------- */
+(function(){
+  var box=document.getElementById('hpSlides'); if(!box) return;
+  var slides=[].slice.call(box.querySelectorAll('.hp-slide'));
+  var dots=[].slice.call(document.querySelectorAll('.hp-dot'));
+  var pauseBtn=document.getElementById('hpPause');
+  var hero=box.parentNode, cur=0, timer=null, userPaused=false, hovering=false;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce) userPaused=true;
+  function show(n){
+    cur=(n+slides.length)%slides.length;
+    slides.forEach(function(sl,i){var on=i===cur;sl.classList.toggle('on',on);if(on)sl.removeAttribute('aria-hidden');else sl.setAttribute('aria-hidden','true');});
+    dots.forEach(function(d,i){d.classList.toggle('on',i===cur);});
+  }
+  function stop(){if(timer){clearInterval(timer);timer=null;}}
+  function start(){stop();if(userPaused||hovering||document.hidden)return;timer=setInterval(function(){show(cur+1);},6500);}
+  document.getElementById('hpNext').addEventListener('click',function(){show(cur+1);start();});
+  document.getElementById('hpPrev').addEventListener('click',function(){show(cur-1);start();});
+  dots.forEach(function(d){d.addEventListener('click',function(){show(+d.getAttribute('data-go'));start();});});
+  pauseBtn.setAttribute('aria-pressed',userPaused?'true':'false');
+  pauseBtn.addEventListener('click',function(){userPaused=!userPaused;pauseBtn.setAttribute('aria-pressed',userPaused?'true':'false');start();});
+  hero.addEventListener('mouseenter',function(){hovering=true;stop();});
+  hero.addEventListener('mouseleave',function(){hovering=false;start();});
+  hero.addEventListener('focusin',function(){hovering=true;stop();});
+  hero.addEventListener('focusout',function(){hovering=false;start();});
+  document.addEventListener('visibilitychange',start);
+  start();
+})();
+</script>
+<script>
+/* ---------- Solution panel (overview / definition) + dropdown menus ---------- */
+(function(){
+  var SOL = {"trading": {"icon": "", "art": "trading-supplies", "photo": "", "en": {"t": "Trading & Supplies", "o": "Trading & supplies means sourcing the right equipment for your business and delivering it reliably and on time, so your projects never stall waiting for parts.", "p": ["Electronics & devices", "Security systems", "Networking equipment", "Electrical supplies", "IT solutions"]}, "ar": {"t": "التجارة والمستلزمات", "o": "التجارة والتوريدات معناها توفير المعدات المناسبة لنشاطك وتوصيلها بموثوقية وفي الموعد، عشان مشاريعك ما تتعطلش في انتظار القطع.", "p": ["أجهزة وإلكترونيات", "أنظمة الأمن", "معدات الشبكات", "المستلزمات الكهربائية", "حلول تقنية المعلومات"]}}, "technology": {"art": "control-room", "photo": "", "en": {"t": "Technology Solutions", "o": "Technology solutions match IT and electronics equipment to the way your business actually works, from choosing the right equipment to putting it into service.", "p": ["Understanding how your business operates", "Choosing suitable IT and electronics equipment", "Putting the solution into service"]}, "ar": {"t": "حلول التكنولوجيا", "o": "حلول التكنولوجيا معناها إننا نختار الحلول التقنية والإلكترونية اللي تناسب طريقة شغلك فعلاً، من اختيار المعدات المناسبة لحد تشغيلها.", "p": ["فهم طريقة عمل شركتك", "اختيار المعدات التقنية والإلكترونية المناسبة", "تشغيل الحل ووضعه في الخدمة"]}}, "security": {"art": "cctv-data-center", "photo": "", "en": {"t": "Security Solutions", "o": "Security solutions protect a facility and let you see what is happening in it: CCTV, surveillance and protection systems that keep your premises safe.", "p": ["CCTV cameras & surveillance", "Monitoring and protection systems", "A clear view of your premises"]}, "ar": {"t": "حلول الأمن والمراقبة", "o": "حلول الأمن معناها حماية منشأتك ومتابعة اللي بيحصل فيها: كاميرات مراقبة وأنظمة حماية تحافظ على أمان مكانك.", "p": ["كاميرات المراقبة (CCTV) والمتابعة", "أنظمة المراقبة والحماية", "رؤية واضحة لمنشأتك"]}}, "networking": {"art": "fiber-cityscape", "photo": "", "en": {"t": "Networking Solutions", "o": "A network is what keeps your teams, devices and systems connected. We design, supply and install reliable network infrastructure.", "p": ["Network design", "Supply of network equipment", "Installation and setup"]}, "ar": {"t": "حلول الشبكات", "o": "الشبكة هي اللي بتخلي فريقك وأجهزتك وأنظمتك على اتصال دائم. بنصمم ونورّد ونركّب بنية شبكات موثوقة.", "p": ["تصميم الشبكات", "توريد معدات الشبكات", "التركيب والإعداد"]}}, "support": {"art": "control-room", "photo": "", "en": {"t": "Technical Support", "o": "Technical support keeps your systems running smoothly, through responsive maintenance and help whenever something needs attention.", "p": ["Responsive maintenance", "Technical support for your systems"]}, "ar": {"t": "الدعم الفني", "o": "الدعم الفني بيحافظ على شغل أنظمتك بسلاسة، من خلال صيانة سريعة الاستجابة ومساعدة في أي وقت يحتاج فيه حاجة لتدخل.", "p": ["صيانة سريعة الاستجابة", "دعم فني لأنظمتك"]}}, "projects": {"art": "the-venue-riyadh", "photo": "", "en": {"t": "Project Solutions", "o": "Project solutions cover a job from start to finish: supply and implementation delivered as one coordinated piece of work, from planning to completion.", "p": ["Planning", "Supply of the required equipment", "Implementation", "Completion"]}, "ar": {"t": "حلول المشاريع", "o": "حلول المشاريع بتغطي الشغل من أوله لآخره: توريد وتنفيذ متكاملين كعمل واحد منسّق، من التخطيط حتى الانتهاء.", "p": ["التخطيط", "توريد المعدات المطلوبة", "التنفيذ", "الانتهاء"]}}, "integrated": {"art": "cctv-data-center", "photo": "", "en": {"t": "Integrated Security Systems", "o": "Instead of separate devices, an integrated security system connects cameras, access control and monitoring into one system that is designed and installed together.", "p": ["Network switches", "Access control (ACC) doors", "Control rooms", "Full CCTV coverage"]}, "ar": {"t": "أنظمة الأمن المتكاملة", "o": "بدل أجهزة منفصلة، نظام الأمن المتكامل بيربط الكاميرات والتحكم في الدخول والمتابعة في منظومة واحدة بتتصمم وتتركّب مع بعض.", "p": ["سويتشات الشبكة", "أبواب التحكم في الدخول (ACC)", "غرف التحكم (Control Room)", "تغطية كاميرات مراقبة (CCTV) كاملة"]}}, "fiber": {"art": "fiber-cityscape", "photo": "assets/hero/networking-fiber.jpg", "en": {"t": "Fiber Optic Solutions", "o": "Fiber optic cabling carries data as pulses of light, giving fast and stable connections. We fix messy, unplanned fiber cabling and build internal extensions in factories and homes with structured cabling.", "p": ["Fixing messy or unplanned fiber cabling", "Internal fiber extensions for factories and homes", "Structured cabling", "Fusion splicing, carried out with our own equipment"], "n": "<b>What is fusion splicing?</b> A way of joining two fibers by melting their ends together, so light passes through with minimal loss."}, "ar": {"t": "حلول الألياف الضوئية", "o": "كابلات الألياف الضوئية بتنقل البيانات على هيئة نبضات ضوء، وده بيدّي اتصال سريع ومستقر. بنصلّح عشوائية التمديدات وبنعمل الامتدادات الداخلية في المصانع والمنازل بتمديدات منظمة.", "p": ["إصلاح تمديدات الألياف العشوائية أو غير المخططة", "امتدادات ألياف داخلية للمصانع والمنازل", "تمديدات منظمة (Structured Cabling)", "اللحام بالفيوجن بمعداتنا الخاصة"], "n": "<b>يعني إيه لحام فيوجن؟</b> طريقة لتوصيل ليفتين ببعض عن طريق صهر أطرافهم، عشان الضوء يعدّي بأقل فقد ممكن."}}, "control": {"art": "control-room", "photo": "assets/hero/control-rooms.jpg", "more": "#projects", "en": {"t": "Control Rooms & Data Centers", "o": "A control room is the central point where cameras and systems are watched and managed. A data center is where the servers and network equipment a business depends on are housed. We set up control rooms and work on CCTV and data center projects.", "p": ["Control room setup", "CCTV coverage", "Data center projects"]}, "ar": {"t": "غرف التحكم ومراكز البيانات", "o": "غرفة التحكم هي النقطة المركزية اللي بتتراقب وتتدار منها الكاميرات والأنظمة. ومركز البيانات هو المكان اللي بيضم السيرفرات ومعدات الشبكة اللي شغلك معتمد عليها. بنأسس غرف التحكم وبنشتغل على مشاريع الكاميرات ومراكز البيانات.", "p": ["تأسيس غرف التحكم", "تغطية كاميرات المراقبة", "مشاريع مراكز البيانات"]}}};
+  var UI = {"en": {"kicker": "Our Solutions", "covers": "WHAT IT COVERS", "wa": "Ask on WhatsApp", "quote": "Request a Quote", "more": "See our projects", "waMsg": "Hello Track Trade, I would like to know more about: "}, "ar": {"kicker": "حلولنا", "covers": "بتشمل إيه", "wa": "اسأل على واتساب", "quote": "اطلب عرض سعر", "more": "شاهد مشاريعنا", "waMsg": "مرحباً مسار للتجارة، عايز أعرف أكتر عن: "}};
+  var WA = '201212520555';
+  var modal = document.getElementById('solModal'); if(!modal) return;
+  var card = modal.querySelector('.sol-card');
+  var head = document.getElementById('solHead'), img = document.getElementById('solImg');
+  var current = null, lastFocus = null;
+  function lang(){ return document.body.classList.contains('lang-ar') ? 'ar' : 'en'; }
+
+  function render(){
+    if(!current) return;
+    var d = SOL[current], L = lang(), t = d[L], u = UI[L];
+    head.style.setProperty('--sol-art', 'url(assets/projects/art/' + d.art + '.svg)');
+    var photo = 'assets/solutions/' + current + '.jpg';
+    if(img.getAttribute('src') !== photo){ img.classList.remove('ok'); img.setAttribute('src', photo); }
+    document.getElementById('solKicker').textContent = u.kicker;
+    document.getElementById('solTitle').textContent = t.t;
+    document.getElementById('solOver').textContent = t.o;
+    document.getElementById('solCoversH').textContent = u.covers;
+    var ul = document.getElementById('solList'); ul.textContent = '';
+    t.p.forEach(function(x){ var li = document.createElement('li'); li.textContent = x; ul.appendChild(li); });
+    var note = document.getElementById('solNote');
+    if(t.n){ note.innerHTML = t.n; note.hidden = false; } else { note.innerHTML = ''; note.hidden = true; }
+    var wa = document.getElementById('solWa');
+    wa.textContent = u.wa;
+    wa.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent(u.waMsg + t.t);
+    document.getElementById('solQuote').textContent = u.quote;
+    var more = document.getElementById('solMore');
+    if(d.more){ more.textContent = u.more + (L === 'ar' ? ' \u2190' : ' \u2192'); more.setAttribute('href', d.more); more.hidden = false; } else { more.hidden = true; }
+  }
+  function open(id){
+    if(!SOL[id]) return;
+    current = id; lastFocus = document.activeElement;
+    render(); modal.hidden = false; document.body.classList.add('sol-open');
+    card.scrollTop = 0; setTimeout(function(){ card.focus(); }, 20);
+  }
+  function close(){
+    if(modal.hidden) return;
+    modal.hidden = true; document.body.classList.remove('sol-open'); current = null;
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  window.masarSolSetLang = function(){ render(); };
+  window.masarOpenSolution = open;
+
+  modal.addEventListener('click', function(e){ if(e.target.closest('[data-sol-close]')) close(); });
+  document.getElementById('solQuote').addEventListener('click', close);
+  document.getElementById('solMore').addEventListener('click', close);
+  document.addEventListener('keydown', function(e){
+    if(modal.hidden) return;
+    if(e.key === 'Escape'){ e.preventDefault(); close(); return; }
+    if(e.key === 'Tab'){
+      var f = [].slice.call(card.querySelectorAll('a[href],button:not([disabled])')).filter(function(x){ return x.offsetParent !== null; });
+      if(!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if(e.shiftKey && (document.activeElement === first || document.activeElement === card)){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey && document.activeElement === last){ e.preventDefault(); first.focus(); }
+    }
+  });
+
+  /* any element with data-solution opens the panel (cards, quick strip, slider, menus) */
+  document.addEventListener('click', function(e){
+    var t = e.target.closest('[data-solution]'); if(!t) return;
+    if(t.classList.contains('card') && e.target.closest('a')) return;
+    e.preventDefault(); open(t.getAttribute('data-solution'));
+  });
+
+  /* dropdown menus */
+  var dds = [].slice.call(document.querySelectorAll('.nav-dd'));
+  function closeMenus(except){ dds.forEach(function(d){ if(d !== except){ d.classList.remove('open'); var b = d.querySelector('.dd-caret'); if(b) b.setAttribute('aria-expanded','false'); } }); }
+  dds.forEach(function(d){
+    var b = d.querySelector('.dd-caret');
+    b.addEventListener('click', function(e){
+      e.stopPropagation();
+      var o = !d.classList.contains('open'); closeMenus(d);
+      d.classList.toggle('open', o); b.setAttribute('aria-expanded', o ? 'true' : 'false');
+    });
+    d.querySelector('.nav-menu').addEventListener('click', function(e){
+      var a = e.target.closest('a'); if(!a) return;
+      closeMenus();
+      var f = a.getAttribute('data-filter');
+      if(f){
+        var btn = document.querySelector('.filter[data-filter="' + f + '"]'); if(btn) btn.click();
+      }
+    });
+  });
+  document.addEventListener('click', function(e){ if(!e.target.closest('.nav-dd')) closeMenus(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') closeMenus(); });
+})();
+</script>
+<script>
+/* ---------- Jump to a service card + briefly highlight it ---------- */
+(function(){
+  function highlight(id){
+    var t = document.getElementById(id.replace('#',''));
+    if(!t) return;
+    t.scrollIntoView({behavior:'smooth', block:'center'});
+    t.classList.remove('svc-hl'); void t.offsetWidth; t.classList.add('svc-hl');
+    setTimeout(function(){ t.classList.remove('svc-hl'); }, 1900);
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a[href^="#svc-"]');
+    if(!a) return;
+    e.preventDefault();
+    highlight(a.getAttribute('href'));
+    var mobileLinks = document.getElementById('siteLinks');
+    if (mobileLinks) mobileLinks.classList.remove('open');
+  });
+  if (location.hash && location.hash.indexOf('#svc-') === 0) {
+    setTimeout(function(){ highlight(location.hash); }, 400);
+  }
+})();
+</script>
+<script>
+  var MASAR_CHAT_CONFIG = {
+    whatsapp: '201212520555',
+    // Optional: URL that receives the chat rating (POST JSON). Leave empty = ratings are not sent anywhere.
+    feedbackEndpoint: '',
+    // Optional working hours. Only when set does the bot ever say the team is away. Example:
+    // hours: { tz: 'Africa/Cairo', days: [0,1,2,3,4,6], start: '09:00', end: '18:00', label: { en: 'Cairo time', ar: 'بتوقيت القاهرة' } }
+    hours: null
+  };
 </script>
 <script src="assets/chat-widget.js"></script>
 </body>
